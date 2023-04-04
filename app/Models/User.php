@@ -20,6 +20,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "nom",
+        "prenom",
+        "email",
+        "numTel",
+        "numMobile",
+        "cin",
+        "role",
+        "password",
+        "date_naissance",
     ];
 
     /**
@@ -40,4 +49,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function abonnements(){
+        return $this->belongsToMany(Abonnement::class, 'users_abonnements', 'user_id', 'abonnement_id');
+    }
 }
