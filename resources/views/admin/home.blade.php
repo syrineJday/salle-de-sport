@@ -45,7 +45,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Salles</h5>
+                        <h5 class="card-title">Produits</h5>
 
                         <!-- Default Table -->
                         <table class="table">

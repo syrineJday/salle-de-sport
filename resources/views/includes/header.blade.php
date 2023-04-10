@@ -29,6 +29,15 @@
 								<li><a href="contact-2.html">Contact Two</a></li>
 							</ul>
 						</li>
+
+                        <li class="has-dropdown">
+							<a href="javascript:void(0)">Mon compte</a>
+							<ul class="sub-menu">
+								<li><a href="{{ route('login') }}">Se connecter</a></li>
+								<li><a href="{{ route('register') }}">S'inscrire</a></li>
+							</ul>
+						</li>
+						
 					</ul>
 				</nav>
 				<div class="attr-menu">
