@@ -1,6 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SalleController;
+use App\Http\Controllers\Admin\SeanceController;
+use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AbonnementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +21,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resources([
+        "abonnes" => UserController::class,
+        "entraineur" => UserController::class,
+        "salles" => SalleController::class,
+        "activites" => ActivityController::class,
+        "categories" => CategoryController::class,
+        "seances" => SeanceController::class,
+        "abonnements" => AbonnementController::class
+    ]);
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,3 +44,5 @@ Route::get('/home/dashboard', function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

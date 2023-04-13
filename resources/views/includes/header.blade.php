@@ -30,7 +30,7 @@
 							</ul>
 						</li>
 
-                        <li class="has-dropdown">
+                        <li class="has-dropdown">   
 							<a href="javascript:void(0)">Mon compte</a>
 							<ul class="sub-menu">
 								<li><a href="{{ route('login') }}">Se connecter</a></li>
