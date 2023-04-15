@@ -15,19 +15,16 @@
 							
 						</li>
 						<li class="has-dropdown">
-							<a href="#">Abonnements</a>
+							<a href="{{ route('abonnements.index') }}">Abonnements</a>
 							
 						</li>
 						<li class="has-dropdown">
-							<a href="class.html">Entraineurs</a>
+							<a href="{{ route('entraineurs.index') }}">Entraineurs</a>
 						</li>
 					
 						<li class="has-dropdown">
-							<a href="contact.html">Contact</a>
-							<ul class="sub-menu">
-								<li><a href="contact.html">Contact Page</a></li>
-								<li><a href="contact-2.html">Contact Two</a></li>
-							</ul>
+							<a href="{{ route('contact.index') }}">Contact</a>
+							
 						</li>
 
                         <li class="has-dropdown">   
@@ -62,11 +59,7 @@
 						</li>
 					</ul>
 				</div>
-				<a href="javascript:void(0);" class="hamburger-menu">
-					<div class="hamburger-btn">
-						<div class="hamburger-bar"></div>
-					</div>
-				</a>
+				
 			</div>
 		</div>
 	</div>

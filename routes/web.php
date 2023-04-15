@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SeanceController;
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AbonnementController;
+use App\Http\Controllers\AbonnementController as AbonnementClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('abonnements', [AbonnementClientController::class, 'index'])->name('abonnements.index');
+Route::get('entraineurs', function(){
+    return view('entraineurs.index');
+})->name('entraineurs.index');
+
+Route::get('contact', function(){
+    return view('contact.index');
+})->name('contact.index');
 
 Route::get('/home/dashboard', function(){
     return view('admin.home');
