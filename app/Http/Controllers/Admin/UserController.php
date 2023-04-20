@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -12,9 +13,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.users.index');
+        if($request->role == "abonne"){
+            $users = User::whereJsonContains('role->ROLE_ABONNE', true)->paginate(10);
+        } else {
+            $users = User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->paginate(10);
+
+        }
+        return view('admin.users.index', compact('users'));
     }
 
     /**

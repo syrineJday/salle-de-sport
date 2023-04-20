@@ -24,8 +24,7 @@ use App\Http\Controllers\AbonnementController as AbonnementClientController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resources([
-        "abonnes" => UserController::class,
-        "entraineur" => UserController::class,
+        "users" => UserController::class,
         "salles" => SalleController::class,
         "activites" => ActivityController::class,
         "categories" => CategoryController::class,

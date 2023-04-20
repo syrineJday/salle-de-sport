@@ -10,12 +10,12 @@
     </a>
     <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
         <li>
-            <a href="{{ url('admin/abonnes') }}">
+            <a href="{{ route('admin.users.index', ['role' => 'abonne']) }}">
                 <i class="bi bi-circle"></i><span>Abonnées</span>
             </a>
         </li>
         <li>
-            <a href="{{ url('admin/entraineur') }}">
+            <a href="{{ route('admin.users.index', ['role' => 'entraineur']) }}">
                 <i class="bi bi-circle"></i><span>Entraineurs</span>
             </a>
         </li>

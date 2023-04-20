@@ -4,12 +4,16 @@
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-        <h1>Liste des abonnées</h1>
-        <a href="{{ route('admin.abonnes.create') }}">
+        @if(request()->role == "entraineur")
+        <h1>Liste des entraineurs</h1>
+        <a href="{{ route('admin.users.create', ['role' => 'entraineur']) }}">
             <button class="btn-delete">
                 <i class="fa fa-plus"></i>
             </button>
         </a>
+        @else
+        <h1>Liste des abonnées</h1>
+        @endif
     </div><!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
@@ -33,22 +37,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($niveaux as $niveau)
+                                @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $niveau->id }}</td>
-                                        <td>{{ $niveau->label }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->nom }}</td>
+                                        <td>{{ $user->prenom }}</td>
+                                        <td>{{ $user->numTel }}</td>
+                                        <td>{{ $user->numMobile }}</td>
+                                        <td>{{ $user->cin }}</td>
+                                        <td>{{ $user->adresse }}</td>
+                                        <td>{{ $user->date_naissance }}</td>
                                         <td>
-                                            <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="niveau" title="Supprimer un niveau" data-url="{{ route('admin.niveaux.destroy', ['niveau' => $niveau]) }}" >
-                                                    <i class="fa fa-trash" ></i>
-                                                </button>
-                                                <a href="{{ route('admin.niveaux.edit', ['niveau' => $niveau]) }}" data-model="niveau" title="Modifier un niveau" class="edit-confirm btn-edit">
-                                                    <i class="fa fa-pen"></i>
-                                                </a>
-                                            </div>
+                                            
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

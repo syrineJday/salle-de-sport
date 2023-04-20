@@ -41,7 +41,7 @@
 								<input type="text" placeholder="E-mail adresse" name="email">
 							</div>
 							<div class="input-wrap input-icon icon-email">
-								<input type="text" placeholder="Mot de passe" name="password">
+								<input type="password" placeholder="Mot de passe" name="password">
 							</div>
 							
 							
