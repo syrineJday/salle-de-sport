@@ -6,7 +6,7 @@
     <div class="pagetitle d-flex justify-content-between">
         @if(request()->role == "entraineur")
         <h1>Liste des entraineurs</h1>
-        <a href="{{ route('admin.users.create', ['role' => 'entraineur']) }}">
+        <a href="{{ route('admin.users.create') }}">
             <button class="btn-delete">
                 <i class="fa fa-plus"></i>
             </button>
@@ -48,7 +48,14 @@
                                         <td>{{ $user->adresse }}</td>
                                         <td>{{ $user->date_naissance }}</td>
                                         <td>
-                                            
+                                            <div class="d-flex justify-content-around">
+                                                <button type="submit" class="btn-delete delete-confirm" data-model="entraineur" title="Supprimer un entraineur" data-url="{{ route('admin.users.destroy', ['user' => $user]) }}" >
+                                                    <i class="fa fa-trash" ></i>
+                                                </button>
+                                                <a href="{{ route('admin.users.edit', ['user' => $user]) }}" data-model="entraineur" title="Modifier un entraineur" class="edit-confirm btn-edit">
+                                                    <i class="fa fa-pen"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -4,7 +4,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-        <h1>Ajouter un entraineur</h1>
+        <h1>Modifier un entraineur</h1>
 
     </div><!-- End Page Title -->
     <section class="section">
@@ -13,90 +13,64 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Ajouter un entraineur </h5>
+                        <h5 class="card-title"> Modifier un entraineur </h5>
                         <!-- Default Table -->
-                        <form action="{{ route('admin.users.store') }}" method="post">
+                        <form action="{{ route('admin.users.update', ['user' => $user]) }}" method="post">
                             @csrf
+                            @method('put')
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Nom </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('nom') input-invalid @enderror" value="{{ old('nom') }}" name="nom" placeholder="Saisir nom d'un entraineur">
-                                    @error('nom')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->nom }}" name="nom" placeholder="Saisir nom d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Prenom </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('prenom') }}" name="prenom" placeholder="Saisir prenom d'un entraineur">
-                                    @error('prenom')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->prenom }}" name="prenom" placeholder="Saisir prenom d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">E-mail </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Saisir email d'un entraineur">
-                                    @error('email')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->email }}" name="email" placeholder="Saisir email d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Numéro de téléphone </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('numTel') }}" name="numTel" placeholder="Saisir numTel d'un entraineur">
-                                    @error('numTel')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->numTel }}" name="numTel" placeholder="Saisir numTel d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">CIN </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('cin') }}" name="cin" placeholder="Saisir cin d'un entraineur">
-                                    @error('cin')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->cin }}" name="cin" placeholder="Saisir cin d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Adresse </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('adresse') }}" name="adresse" placeholder="Saisir adresse d'un entraineur">
-                                    @error('adresse')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->adresse }}" name="adresse" placeholder="Saisir adresse d'un entraineur">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Spécialite </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ old('specialite') }}" name="specialite" placeholder="Saisir specialite d'un entraineur">
-                                    @error('specialite')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="text" class="form-control" value="{{ $user->specialite }}" name="specialite" placeholder="Saisir specialite d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Mot de passe </label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" value="{{ old('password') }}" name="password" placeholder="Saisir password d'un entraineur">
-                                    @error('password')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="password" class="form-control"  name="password" placeholder="Saisir password d'un entraineur">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Date de naissance </label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" value="{{ old('date_naissance') }}" name="date_naissance">
-                                    @error('date_naissance')
-                                        <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                    @enderror
+                                    <input type="date" class="form-control" value={{ $user->date_naissance }} name="date_naissance">
                                 </div>
                             </div>
                             

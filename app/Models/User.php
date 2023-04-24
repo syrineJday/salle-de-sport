@@ -25,10 +25,12 @@ class User extends Authenticatable
         "email",
         "numTel",
         "numMobile",
+        "adresse",
+        "specialite",
         "cin",
         "role",
         "password",
-        "date_naissance",
+        "date_naissance"
     ];
 
     /**
@@ -59,4 +61,6 @@ class User extends Authenticatable
         return str_contains(Auth::user()->role, 'ROLE_ADMIN');
 
     }
+
+    
 }

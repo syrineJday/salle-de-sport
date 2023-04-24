@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -40,9 +42,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = User::create($request->except('password'));
+
+        $user->password = Hash::make($request->password);
+        $user->role = json_encode(['ROLE_ENTRAINEUR' => true]);
+
+        $user->save();
+
+        return redirect()->route('admin.users.index', ['role' => 'entraineur']);
+
     }
 
     /**
@@ -62,9 +72,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -74,9 +84,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->except('password'));
+
+        if(isset($request->password)){
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
+
+        return redirect()->route('admin.users.index', ['role' => 'entraineur']);
+
     }
 
     /**
@@ -85,8 +103,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json(['deleted' => "Entraineur a été supprimé avec succée"], 200);
     }
 }
