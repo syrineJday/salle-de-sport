@@ -5,7 +5,7 @@
 
     <div class="pagetitle d-flex justify-content-between">
         <h1>Liste des activités</h1>
-        <a href="{{ route('admin.activites.create') }}">
+        <a href="{{ route('admin.activities.create') }}">
             <button class="btn-delete">
                 <i class="fa fa-plus"></i>
             </button>
@@ -22,6 +22,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Label</th>
                                     <th scope="col">Prix</th>
                                     <th scope="col">Category</th>
@@ -29,22 +30,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($niveaux as $niveau)
+                                @foreach($activities as $activity)
                                     <tr>
-                                        <td>{{ $niveau->id }}</td>
-                                        <td>{{ $niveau->label }}</td>
+                                        <td>{{ $activity->id }}</td>
+                                        <td><img src="{{ asset('storage/'.$activity->image) }}" width="160" height="160" style="border-radius: 50%; object-fit: cover;"></td>
+                                        <td>{{ $activity->label }}</td>
+                                        <td>{{ $activity->prix }}</td>
+                                        <td>{{ $activity->category->label }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="niveau" title="Supprimer un niveau" data-url="{{ route('admin.niveaux.destroy', ['niveau' => $niveau]) }}" >
+                                                <button type="submit" class="btn-delete delete-confirm" data-model="activitz" title="Supprimer un activitie" data-url="{{ route('admin.activities.destroy', ['activity' => $activity]) }}" >
                                                     <i class="fa fa-trash" ></i>
                                                 </button>
-                                                <a href="{{ route('admin.niveaux.edit', ['niveau' => $niveau]) }}" data-model="niveau" title="Modifier un niveau" class="edit-confirm btn-edit">
+                                                <a href="{{ route('admin.activities.edit', ['activity' => $activity]) }}" data-model="activite" title="Modifier un activite" class="edit-confirm btn-edit">
                                                     <i class="fa fa-pen"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

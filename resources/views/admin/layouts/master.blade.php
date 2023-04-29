@@ -83,8 +83,6 @@
                             url: url,
                             data: data,
                             success: function(response){
-                                console.log(response);
-                                return;
                                 swal(response.deleted, {
                                     icon: "success",
                                 }).then((result) => {

@@ -28,22 +28,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($niveaux as $niveau)
+                                @foreach($salles as $salle)
                                     <tr>
-                                        <td>{{ $niveau->id }}</td>
-                                        <td>{{ $niveau->label }}</td>
+                                        <td>{{ $salle->id }}</td>
+                                        <td>{{ $salle->label }}</td>
+                                        <td>{{ $salle->num }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="niveau" title="Supprimer un niveau" data-url="{{ route('admin.niveaux.destroy', ['niveau' => $niveau]) }}" >
+                                                <button type="submit" class="btn-delete delete-confirm" data-model="salle" title="Supprimer un salle" data-url="{{ route('admin.salles.destroy', ['salle' => $salle]) }}" >
                                                     <i class="fa fa-trash" ></i>
                                                 </button>
-                                                <a href="{{ route('admin.niveaux.edit', ['niveau' => $niveau]) }}" data-model="niveau" title="Modifier un niveau" class="edit-confirm btn-edit">
+                                                <a href="{{ route('admin.salles.edit', ['salle' => $salle]) }}" data-model="salle" title="Modifier un salle" class="edit-confirm btn-edit">
                                                     <i class="fa fa-pen"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

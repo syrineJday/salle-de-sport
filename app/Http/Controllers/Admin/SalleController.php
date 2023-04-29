@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Salle;
 use Illuminate\Http\Request;
+use App\Http\Requests\SalleRequest;
 use App\Http\Controllers\Controller;
 
 
@@ -15,7 +17,9 @@ class SalleController extends Controller
      */
     public function index()
     {
-        return view('admin.salles.index');
+        $salles = Salle::paginate(10);
+
+        return view('admin.salles.index', compact('salles'));
     }
 
     /**
@@ -25,7 +29,7 @@ class SalleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.salles.create');
     }
 
     /**
@@ -34,9 +38,11 @@ class SalleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SalleRequest $request)
     {
-        //
+        Salle::create($request->all());
+
+        return redirect()->route('admin.salles.index');
     }
 
     /**
@@ -56,9 +62,9 @@ class SalleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Salle $salle)
     {
-        //
+        return view('admin.salles.edit', compact('salle'));
     }
 
     /**
@@ -68,9 +74,11 @@ class SalleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SalleRequest $request, Salle $salle)
     {
-        //
+        $salle->update($request->all());
+
+        return redirect()->route('admin.salles.index');
     }
 
     /**
@@ -79,8 +87,10 @@ class SalleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Salle $salle)
     {
-        //
+        $salle->delete();
+
+        return response()->json(['deleted' => "Salle a été supprimé avec succée"], 200);
     }
 }

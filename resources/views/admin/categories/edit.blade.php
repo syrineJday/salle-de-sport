@@ -19,10 +19,16 @@
                             @csrf
                             @method('put')
                             
-                            <div class="row mb-3">
+                             <div class="row mt-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Libéllé </label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{ $category->label }}" name="label" placeholder="Saisir libéllé de catégorie">
+                                
+                                <div class="col-md-6 position-relative">
+                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ $category->label }}" name="label" placeholder="Saisir libéllé de catégorie" id="validationTooltip03">
+                                    @error('label')
+                                        <div class="invalid-tooltip  d-block ">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             

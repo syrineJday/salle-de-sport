@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'numTel' => $this->faker->phoneNumber,
             'numMobile' => $this->faker->phoneNumber,
             'specialite' => $this->faker->text(10),
-            'role' => json_encode(["ROLE_ENTRAINEUR" => true]),
+            'role' => json_encode(["ROLE_ADMIN" => true]),
             'date_naissance' => $this->faker->dateTime(),
             'email' => $this->faker->unique()->safeEmail(),
             'cin' => $this->faker->numerify("########"),

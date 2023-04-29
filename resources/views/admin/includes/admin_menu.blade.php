@@ -28,7 +28,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link @if(Request::is('admin/activites')) @else collapsed @endif" href="{{ url('admin/activites') }}">
+    <a class="nav-link @if(Request::is('admin/activities')) @else collapsed @endif" href="{{ url('admin/activities') }}">
         <i class="bi bi-grid"></i>
         <span>Activités</span>
     </a>

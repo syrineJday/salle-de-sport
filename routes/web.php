@@ -26,7 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resources([
         "users" => UserController::class,
         "salles" => SalleController::class,
-        "activites" => ActivityController::class,
+        "activities" => ActivityController::class,
         "categories" => CategoryController::class,
         "seances" => SeanceController::class,
         "abonnements" => AbonnementController::class

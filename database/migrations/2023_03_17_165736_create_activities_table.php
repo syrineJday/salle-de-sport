@@ -18,6 +18,7 @@ class CreateActivitiesTable extends Migration
             $table->string('label');
             $table->text('description');
             $table->float('prix');
+            $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
