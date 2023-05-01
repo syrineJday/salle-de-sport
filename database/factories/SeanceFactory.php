@@ -17,7 +17,6 @@ class SeanceFactory extends Factory
     public function definition()
     {
         return [
-            "label" => $this->faker->text(10),
             "startDate" =>$this->faker->dateTime(),
             "endDate" =>$this->faker->dateTime(),
             "user_id" => User::all()->random()->id,

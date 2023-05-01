@@ -18,7 +18,7 @@
                         <form action="{{ route('admin.activities.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
-                              <div class="row mt-3">
+                            <div class="row mt-3">
                                 <label for="prix" class="col-sm-2 col-form-label">Catégories </label>
                                 
                                 <div class="col-md-6 position-relative">

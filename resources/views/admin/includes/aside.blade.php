@@ -3,9 +3,9 @@
 
         @if(Auth::user()->isAdmin())
             @include('admin.includes.admin_menu')
-        @elseif(Auth::user()->isEnseignant())
+        @elseif(Auth::user()->isTrainer())
            
-            @include('admin.includes.enseignant_menu')
+            @include('admin.includes.trainer_menu')
         @else 
             @include('admin.includes.etudiant_menu')
         @endif

@@ -91,5 +91,6 @@ class CategoryController extends Controller
         $category->delete();
 
         return response()->json(['deleted' => "Catégorie a été supprimé avec succée"], 200);
+    
     }
 }

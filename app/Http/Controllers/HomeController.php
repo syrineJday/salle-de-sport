@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isAdmin()){
+        if(Auth::user()->isAdmin() || Auth::user()->isTrainer()){
             return view('admin.home');
             
         }

@@ -61,6 +61,16 @@ class User extends Authenticatable
         return str_contains(Auth::user()->role, 'ROLE_ADMIN');
 
     }
+    
+    public function isTrainer(){
+
+        return str_contains(Auth::user()->role, 'ROLE_ENTRAINEUR');
+
+    }
+
+    public function seances(){
+        return $this->hasMany(Seance::class);
+    }
 
     
 }

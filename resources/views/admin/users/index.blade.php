@@ -29,7 +29,6 @@
                                     <th scope="col">Nom</th>
                                     <th scope="col">Prénom</th>
                                     <th scope="col">Numéro de téléphone</th>
-                                    <th scope="col">Numéro de mobile</th>
                                     <th scope="col">CIN</th>
                                     <th scope="col">Adresse</th>
                                     <th scope="col">Date de naissance</th>
@@ -43,7 +42,6 @@
                                         <td>{{ $user->nom }}</td>
                                         <td>{{ $user->prenom }}</td>
                                         <td>{{ $user->numTel }}</td>
-                                        <td>{{ $user->numMobile }}</td>
                                         <td>{{ $user->cin }}</td>
                                         <td>{{ $user->adresse }}</td>
                                         <td>{{ $user->date_naissance }}</td>

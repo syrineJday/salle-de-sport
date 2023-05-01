@@ -15,11 +15,16 @@ class Activity extends Model
         "prix",
         "category_id"
     ];
+    
     public function abonnements(){
         return $this->belongsToMany(Abonnement::class, 'abonnement_activities', 'acitivty_id', 'abonnement_id');
     }
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function seances(){
+        return $this->hasMany(Seance::class);
     }
 }

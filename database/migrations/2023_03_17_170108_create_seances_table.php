@@ -15,7 +15,6 @@ class CreateSeancesTable extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
             $table->datetime('startDate');
             $table->datetime('endDate');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
