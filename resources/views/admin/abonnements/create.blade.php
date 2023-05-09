@@ -53,10 +53,10 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Libéllé </label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Titre </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ old('label') }}" name="label" placeholder="Saisir libéllé d'activité" id="validationTooltip03">
+                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ old('label') }}" name="label" placeholder="Saisir titre d'un abonnement" id="validationTooltip03">
                                     @error('label')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
@@ -68,7 +68,7 @@
                                 <label for="prix" class="col-sm-2 col-form-label">Tarif </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="number" class="form-control @error('prix') input-invalid @enderror" value="{{ old('prix') }}" name="prix" placeholder="Saisir tarif d'activité" id="validationTooltip03">
+                                    <input type="number" class="form-control @error('prix') input-invalid @enderror" value="{{ old('prix') }}" name="prix" placeholder="Saisir tarif d'un abonnement" id="validationTooltip03">
                                     @error('prix')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}

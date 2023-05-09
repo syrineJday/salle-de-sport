@@ -25,7 +25,7 @@ class SalleRequest extends FormRequest
     {
         return [
             "label" => ['required' , 'regex:/^[a-zA-Z ]+$/'],
-            "num" => ['required'],
+            "num" => ['required', 'unique:salles'],
         ];
     }
 }
