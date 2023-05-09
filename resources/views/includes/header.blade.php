@@ -26,6 +26,12 @@
 							<a href="{{ route('contact.index') }}">Contact</a>
 							
 						</li>
+					
+                        @if(Auth::check())
+						<li class="">
+							<a href="{{ route('schedule.index') }}">Schedule</a>
+						</li>
+                        @endif
 
                         @guest
                         <li class="has-dropdown">   
@@ -42,7 +48,6 @@
 				<div class="main-menu">
 					<ul>
 						<li>
-							<a href="#" class="open-search"><i class="far fa-search"></i></a>
 						</li>
                         @if(Auth::check())
 						<li class="has-dropdown">

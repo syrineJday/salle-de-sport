@@ -22,8 +22,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Date début</th>
-                                    <th scope="col">Date fin</th>
+                                    <th scope="col">Jour</th>
+                                    <th scope="col">Temps début</th>
+                                    <th scope="col">Temps fin</th>
                                     <th scope="col">Entraineur</th>
                                     <th scope="col">Salle</th>
                                     <th scope="col">Activité</th>
@@ -34,8 +35,9 @@
                                  @foreach($seances as $seance)
                                     <tr>
                                         <td>{{ $seance->id }}</td>
-                                        <td>{{ $seance->startDate }}</td>
-                                        <td>{{ $seance->endDate }}</td>
+                                        <td>{{ $seance->day }}</td>
+                                        <td>{{ $seance->startTime }}</td>
+                                        <td>{{ $seance->endTime }}</td>
                                         <td>{{ $seance->user->nom }} {{ $seance->user->prenom }}</td>
                                         <td>{{ $seance->salle->label }}</td>
                                         <td>{{ $seance->activity->label }}</td>

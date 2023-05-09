@@ -24,27 +24,34 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Label</th>
                                     <th scope="col">Prix</th>
-                                    <th scope="col">Horaires</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Nombre d'activité inclus</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($niveaux as $niveau)
+                                @foreach($abonnements as $abonnement)
                                     <tr>
-                                        <td>{{ $niveau->id }}</td>
-                                        <td>{{ $niveau->label }}</td>
+                                        <td>{{ $abonnement->id }}</td>
+                                        <td>{{ $abonnement->label }}</td>
+                                        <td>{{ $abonnement->prix }}</td>
+                                        <td>{{ $abonnement->type }}</td>
+                                        <td>{{ $abonnement->activities()->count() }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="niveau" title="Supprimer un niveau" data-url="{{ route('admin.niveaux.destroy', ['niveau' => $niveau]) }}" >
+                                                <button type="submit" class="btn-delete delete-confirm" data-model="abonnement" title="Supprimer un abonnement" data-url="{{ route('admin.abonnements.destroy', ['abonnement' => $abonnement]) }}" >
                                                     <i class="fa fa-trash" ></i>
                                                 </button>
-                                                <a href="{{ route('admin.niveaux.edit', ['niveau' => $niveau]) }}" data-model="niveau" title="Modifier un niveau" class="edit-confirm btn-edit">
+                                                <a href="{{ route('admin.abonnements.edit', ['abonnement' => $abonnement]) }}" data-model="abonnement" title="Modifier un abonnement" class="edit-confirm btn-edit">
                                                     <i class="fa fa-pen"></i>
+                                                </a>
+                                                <a href="{{ route('admin.abonnements.show', ['abonnement' => $abonnement]) }}" data-model="abonnement" title="Détail d'un abonnement" class="btn-edit">
+                                                    <i class="fa fa-info-circle"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

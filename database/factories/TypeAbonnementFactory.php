@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SalleFactory extends Factory
+class TypeAbonnementFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +14,7 @@ class SalleFactory extends Factory
     public function definition()
     {
         return [
-            "label" => $this->faker->name(),
-            "num" => $this->faker->unique()->safeEmail()
+            //
         ];
     }
 }

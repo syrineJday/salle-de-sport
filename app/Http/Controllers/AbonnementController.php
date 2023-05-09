@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Abonnement;
 use Illuminate\Http\Request;
-
+use App\Models\UsersAbonnement;
+use Auth;
 class AbonnementController extends Controller
 {
     /**
@@ -19,69 +20,22 @@ class AbonnementController extends Controller
         return view('abonnements.index', compact('abonnements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function participer(Abonnement $abonnement){
+        $userAbonnement = new UsersAbonnement();
+        if($abonnement->type == "AN"){
+            $monthsNumber = "+12 months";
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        } else {
+            $monthsNumber = "+".substr($abonnement->type, 0, 1)." months";
+        }
+        $userAbonnement->startDate = date('Y-m-d');
+        $userAbonnement->endDate = date('Y-m-d', strtotime($monthsNumber, strtotime(date('Y-m-d'))));
+        $userAbonnement->user_id = Auth::id();
+        $userAbonnement->abonnement_id = $abonnement->id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $userAbonnement->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        return redirect()->route('abonnements.index')->with('success',"Vous avez participé a l'abonnement $abonnement->label avec succée");
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

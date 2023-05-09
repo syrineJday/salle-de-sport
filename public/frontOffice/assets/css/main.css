@@ -6990,12 +6990,16 @@ label {
 }
 
 .pricing-wrap {
-  position: relative;
-  border-top: 5px solid #e63a34;
-  background: #fff;
-  text-align: center;
-  padding: 55px 45px;
-  z-index: 1;
+    position: relative;
+    border-top: 5px solid #e63a34;
+    background: #fff;
+    text-align: center;
+    padding: 55px 45px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .pricing-wrap .shape {
   content: "";
@@ -12800,3 +12804,9 @@ label {
 }
 
 /*# sourceMappingURL=main.css.map */
+/* NEW CSS ADDED */
+.activity_inclu{
+    width: 90px;
+    color: #2e2b2b;
+    font-weight: 700;
+}

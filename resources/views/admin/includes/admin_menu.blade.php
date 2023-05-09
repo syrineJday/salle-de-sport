@@ -4,23 +4,18 @@
         <span>Accueil</span>
     </a>
 </li>
+
 <li class="nav-item">
-    {{-- helpers --}}
-    <a class="nav-link @if(Request::is('admin/users') && request()->has('role')) @else collapsed @endif" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-        <i class="bi bi-journal-text"></i><span>Utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link @if(Request::is('admin/users') && request()->get('role') == "abonne") @else collapsed @endif" href="{{ route('admin.users.index', ['role' => 'abonne']) }}">
+        <i class="bi bi-grid"></i>
+        <span>Abonnées</span>
     </a>
-    <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
-        <li>
-            <a href="{{ route('admin.users.index', ['role' => 'abonne']) }}">
-                <i class="bi bi-circle"></i><span>Abonnées</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.users.index', ['role' => 'entraineur']) }}">
-                <i class="bi bi-circle"></i><span>Entraineurs</span>
-            </a>
-        </li>
-    </ul>
+</li>
+<li class="nav-item">
+    <a class="nav-link @if(Request::is('admin/users') && request()->get('role') == "entraineur") @else collapsed @endif" href="{{ route('admin.users.index', ['role' => 'entraineur']) }}">
+        <i class="bi bi-grid"></i>
+        <span>Entraineurs</span>
+    </a>
 </li>
 <li class="nav-item">
     <a class="nav-link @if(Request::is('admin/salles')) @else collapsed @endif" href="{{ url('admin/salles') }}">

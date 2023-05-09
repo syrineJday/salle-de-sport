@@ -16,7 +16,7 @@ class AbonnementFactory extends Factory
         return [
             "label" => $this->faker->text(10),
             "prix" => 120,
-            "horaires" => $this->faker->text(10)
+            "type" => "1 MOIS",
         ];
     }
 }

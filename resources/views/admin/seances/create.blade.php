@@ -70,11 +70,21 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label for="endDate" class="col-sm-2 col-form-label">Date début </label>
+                                <label for="prix" class="col-sm-2 col-form-label">Jours </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="datetime-local" class="form-control @error('startDate') input-invalid @enderror" value="{{ old('startDate') }}" name="startDate" id="endDate">
-                                    @error('startDate')
+                                    <select class="form-select" name="day" aria-label="Default select example">
+                                        <option selected="" disabled>Sélectionner un jour</option>
+                                        <option value="lundi">lundi</option>
+                                        <option value="mardi">mardi</option>
+                                        <option value="mercredi">mercredi</option>
+                                        <option value="jeudi">jeudi</option>
+                                        <option value="vendredi">vendredi</option>
+                                        <option value="samedi">samedi</option>
+                                        <option value="dimanche">dimanche</option>
+                                        
+                                    </select>
+                                    @error('day')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
                                         </div>
@@ -82,11 +92,23 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label for="endDate" class="col-sm-2 col-form-label">Date fin </label>
+                                <label for="startTime" class="col-sm-2 col-form-label">Temps début </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="datetime-local" class="form-control @error('endDate') input-invalid @enderror" value="{{ old('endDate') }}" name="endDate"  id="endDate">
-                                    @error('endDate')
+                                    <input type="time" class="form-control @error('startTime') input-invalid @enderror" value="{{ old('startTime') }}" name="startTime" id="startTime">
+                                    @error('startTime')
+                                        <div class="invalid-tooltip  d-block ">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <label for="endTime" class="col-sm-2 col-form-label">Temps fin </label>
+                                
+                                <div class="col-md-6 position-relative">
+                                    <input type="time" class="form-control @error('endTime') input-invalid @enderror" value="{{ old('endTime') }}" name="endTime"  id="endTime">
+                                    @error('endTime')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
                                         </div>

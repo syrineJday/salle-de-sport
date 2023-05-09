@@ -21,6 +21,12 @@
     </section>
     <div class="pricing-area bg-off-white pt-130 pb-100">
         <div class="container">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block mb-5">
+                        <button type="button" class="close" data-dismiss="alert">×</button>	
+                            <strong>{{ $message }}</strong>
+                    </div>
+                @endif
             <div class="row justify-content-center align-items-center">
                 <div class="col-xl-12">
                     <div class="section-title-2 bar-theme-color text-center mb-35">
@@ -42,12 +48,19 @@
                             <h2>
                                 Activités inclus: 
                             </h2>
+                            <ul>
+                                @foreach($abonnement->activities()->get() as $activity)
+                                    <li class="activity_inclu">
+                                        {{ $activity->label }}
+                                    </li>
+                                @endforeach
+                            </ul>
                         </p>
                         <span class="price">
-                            {{ $abonnement->prix }}DT
+                            {{ $abonnement->prix }}DT/{{ $abonnement->type }}
                         </span>
-                        <a href="pricing.html" class="order-btn">
-                            select plan <i class="fas fa-angle-double-right"></i>
+                        <a href="{{ route('abonnement.participer', ['abonnement' => $abonnement]) }}" class="order-btn">
+                            Choisir plan <i class="fas fa-angle-double-right"></i>
                         </a>
                         <div class="shape">
                             <img src="{{ asset('frontOffice/assets/img/shape/shape-11.png') }}" alt="shape">

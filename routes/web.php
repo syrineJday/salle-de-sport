@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Seance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,6 +44,21 @@ Route::get('entraineurs', function(){
     return view('entraineurs.index');
 })->name('entraineurs.index');
 
+Route::get('schedule', function(){
+    $jours = ['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche'];
+    foreach(Auth::user()->abonnements()->get() as $abonnement){
+        foreach($abonnement->activities()->get() as $activity){
+            foreach($activity->seances()->get() as $seance){
+                $seanceIds[] = $seance->id;
+            }
+        }
+    }
+
+    $seances =  Seance::whereIn('id', $seanceIds)->get();
+
+    return view('schedule.index', compact('jours', 'seances'));
+})->name('schedule.index');
+
 Route::get('contact', function(){
     return view('contact.index');
 })->name('contact.index');
@@ -50,6 +66,9 @@ Route::get('contact', function(){
 Route::get('/home/dashboard', function(){
     return view('admin.home');
 });
+
+Route::get('abonnement/{abonnement}/participer', [AbonnementClientController::class, 'participer'])->name('abonnement.participer')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

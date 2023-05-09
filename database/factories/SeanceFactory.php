@@ -17,8 +17,9 @@ class SeanceFactory extends Factory
     public function definition()
     {
         return [
-            "startDate" =>$this->faker->dateTime(),
-            "endDate" =>$this->faker->dateTime(),
+            "day" => $this->faker->randomElement(['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche']),
+            "startTime" =>$this->faker->time(),
+            "endTime" =>$this->faker->time(),
             "user_id" => User::all()->random()->id,
             "salle_id" => Salle::all()->random()->id,
             "activity_id" => Activity::all()->random()->id

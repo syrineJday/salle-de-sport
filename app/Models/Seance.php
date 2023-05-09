@@ -10,9 +10,9 @@ class Seance extends Model
     use HasFactory;
 
     protected $fillable = [
-        "label",
-        "startDate",
-        "endDate",
+        "day",
+        "startTime",
+        "endTime",
         "user_id",
         "salle_id",
         "activity_id"
