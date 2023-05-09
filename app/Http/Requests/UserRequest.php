@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             "email" => ["required", 'email', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             "cin" => ["required"],
-            "numTel" => ["required", 'numeric'],
+            "numTel" => ["required", 'numeric', 'unique:users'],
             "sepcialite" => ["string"],
             "adresse" => ["string"],
         ];
