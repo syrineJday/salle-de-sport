@@ -40,30 +40,57 @@
                           
 							<div class="input-wrap input-icon icon-name">
 								<input type="text" placeholder="Nom" name="nom">
+                                @error('nom')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="text" placeholder="Prénom" name="prenom">
+                                @error('prenom')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="number" placeholder="Numéro de téléphone" name="numTel">
+                                @error('numTel')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="number" placeholder="Numéro mobile" name="numMobile">
+                                @error('numMobile')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="number" placeholder="Carte d'identité national" name="cin">
+                                @error('cin')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="text" placeholder="Adresse" name="adresse">
+                                @error('adresse')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="date" placeholder="Date de naissance" name="date_naissance">
+                                @error('date_naissance')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
 								<input type="text" placeholder="E-mail adresse" name="email">
+                                @error('email')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-email">
 								<input type="text" placeholder="Mot de passe" name="password">
+                                @error('password')
+                                    <p>{{ $message }}</p>
+                                @enderror
 							</div>
 							<div class="input-wrap input-icon icon-email">
 								<input type="text" placeholder="Confirmer mot de passe" name="password_confirmation">
