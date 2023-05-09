@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title"> Ajouter un entraineur </h5>
                         <!-- Default Table -->
-                        <form action="{{ route('admin.users.store') }}" method="post">
+                        <form action="{{ route('admin.users.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Nom </label>
@@ -98,6 +98,17 @@
                                         <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mt-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Photo</label>
+                                <div class="col-md-6">
+                                    <input class="form-control @error('photo') input-invalid @enderror" name="photo" type="file" id="formFile">
+                                </div>
+                                @error('photo')
+                                    <div class="invalid-tooltip  d-block ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             
                             <div class="row mb-3">

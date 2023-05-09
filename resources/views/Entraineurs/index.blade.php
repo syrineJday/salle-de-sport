@@ -36,14 +36,21 @@
 				</div>
 			</div>
 			<div class="row">
+                @foreach(App\Models\User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->paginate(10) as $trainer)
+
 				<div class="col-xl-3 col-md-6">
 					<div class="team-wrap-2 mb-30">
 						<div class="team-img">
-							<img src="{{ asset('frontOffice/assets/img/team/team.jpg') }}" alt="Team">
+							<img src="{{ asset('storage/'.$trainer->photo) }}" alt="Team">
 						</div>
 						<div class="team-content">
-							<h3><a href="trainer-details.html">Howard C. Skinner</a></h3>
-							<span>Dumbbell Trainer</span>
+							<h3><a href="trainer-details.html">
+                                {{ $trainer->nom }}  
+                                {{ $trainer->prenom }}  
+                            </a></h3>
+							<span>
+                                {{ $trainer->specialite }}
+                            </span>
 							<div class="team-social-link">
 								<ul>
 									<li>
@@ -63,87 +70,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6">
-					<div class="team-wrap-2 mb-30">
-						<div class="team-img">
-							<img src="{{ asset('frontOffice/assets/img/team/team-2.jpg') }}" alt="img">
-						</div>
-						<div class="team-content">
-							<h3><a href="trainer-details.html">Raymond L. Brown</a></h3>
-							<span>Boxing Trainer</span>
-							<div class="team-social-link">
-								<ul>
-									<li>
-										<a href="#"><i class="fab fa-facebook-f"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-instagram"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-google"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6">
-					<div class="team-wrap-2 mb-30">
-						<div class="team-img">
-							<img src="{{ asset('frontOffice/assets/img/team/team-3.jpg') }}" alt="">
-						</div>
-						<div class="team-content">
-							<h3><a href="trainer-details.html">Charles T. McAllister</a></h3>
-							<span>Caradio Trainer</span>
-							<div class="team-social-link">
-								<ul>
-									<li>
-										<a href="#"><i class="fab fa-facebook-f"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-instagram"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-google"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6">
-					<div class="team-wrap-2 mb-30">
-						<div class="team-img">
-							<img src="{{ asset('frontOffice/assets/img/team/team-4.jpg') }}" alt="">
-						</div>
-						<div class="team-content">
-							<h3><a href="trainer-details.html">Solomon K. Sawyers</a></h3>
-							<span>Beauty Trainer</span>
-							<div class="team-social-link">
-								<ul>
-									<li>
-										<a href="#"><i class="fab fa-facebook-f"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-instagram"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fab fa-google"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+                @endforeach
+			
 			</div>
 		</div>
 		<div class="team-shape-1">

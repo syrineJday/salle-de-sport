@@ -11,7 +11,7 @@
 				<nav class="main-menu">
 					<ul>
 						<li class="has-dropdown">
-							<a href="index.html">Accueil</a>
+							<a href="/">Accueil</a>
 							
 						</li>
 						<li class="has-dropdown">
@@ -27,6 +27,7 @@
 							
 						</li>
 
+                        @guest
                         <li class="has-dropdown">   
 							<a href="javascript:void(0)">Mon compte</a>
 							<ul class="sub-menu">
@@ -34,17 +35,38 @@
 								<li><a href="{{ route('register') }}">S'inscrire</a></li>
 							</ul>
 						</li>
+                        @endif
 						
 					</ul>
 				</nav>
-				<div class="attr-menu">
+				<div class="main-menu">
 					<ul>
 						<li>
 							<a href="#" class="open-search"><i class="far fa-search"></i></a>
 						</li>
-						<li>
-							<a href="#"><i class="far fa-shopping-bag"></i></a>
+                        @if(Auth::check())
+						<li class="has-dropdown">
+							<img src="{{ asset('frontOffice/assets/img/author/author-1.jpg') }}" alt="">
+                            {{ Auth::user()->nom }}
+                            {{ Auth::user()->prenom }}
+                            <ul class="sub-menu">
+								<li><a href="{{ route('login') }}">Mon profile</a></li>
+								<li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-box-arrow-right"></i>
+
+                                        {{ __('Déconnecter') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+							</ul>
 						</li>
+                        @endif
 					</ul>
 				</div>
 			</div>

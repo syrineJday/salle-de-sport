@@ -46,9 +46,14 @@ class UserController extends Controller
     {
         $user = User::create($request->except('password'));
 
+
+
         $user->password = Hash::make($request->password);
         $user->role = json_encode(['ROLE_ENTRAINEUR' => true]);
 
+        if($request->hasFile('image')){
+            $user->photo = $request->photo->store('images');
+        }
         $user->save();
 
         return redirect()->route('admin.users.index', ['role' => 'entraineur']);
@@ -90,8 +95,14 @@ class UserController extends Controller
 
         if(isset($request->password)){
             $user->password = Hash::make($request->password);
-            $user->save();
         }
+
+        if($request->hasFile('photo')){
+            $user->photo = $request->photo->store('images');
+        }
+        
+        $user->save();
+
 
         return redirect()->route('admin.users.index', ['role' => 'entraineur']);
 

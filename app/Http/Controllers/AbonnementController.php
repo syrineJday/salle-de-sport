@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Abonnement;
 use Illuminate\Http\Request;
 
 class AbonnementController extends Controller
@@ -13,7 +14,9 @@ class AbonnementController extends Controller
      */
     public function index()
     {
-        return view('abonnements.index');
+        $abonnements = Abonnement::paginate(10);
+
+        return view('abonnements.index', compact('abonnements'));
     }
 
     /**

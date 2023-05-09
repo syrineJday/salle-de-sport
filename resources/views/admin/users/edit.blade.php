@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title"> Modifier un entraineur </h5>
                         <!-- Default Table -->
-                        <form action="{{ route('admin.users.update', ['user' => $user]) }}" method="post">
+                        <form action="{{ route('admin.users.update', ['user' => $user]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="row mb-3">
@@ -73,10 +73,22 @@
                                     <input type="date" class="form-control" value={{ $user->date_naissance }} name="date_naissance">
                                 </div>
                             </div>
+
+                            <div class="row mt-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Photo</label>
+                                <div class="col-md-6">
+                                    <input class="form-control @error('photo') input-invalid @enderror" name="photo" type="file" id="formFile">
+                                </div>
+                                @error('photo')
+                                    <div class="invalid-tooltip  d-block ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             
                             <div class="row mb-3">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">ajouter</button>
+                                    <button type="submit" class="btn btn-primary">modifier</button>
                                     <button type="reset" class="btn btn-light">annuler</button>
                                 </div>
                             </div>

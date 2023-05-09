@@ -82,7 +82,10 @@ class ActivityController extends Controller
     public function update(ActivityUpdateRequest $request, Activity $activity)
     {
         $activity->update($request->all());
-
+        if($request->hasFile('image')){
+            $activity->image = $request->image->store('images');
+            $activity->save();
+        }
         return redirect()->route('admin.activities.index');
     }
 
