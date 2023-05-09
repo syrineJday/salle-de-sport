@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             "prenom" => ["required", 'string'],
             "email" => ["required", 'email', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            "cin" => ["required"],
+            "cin" => ["required", "unique:users"],
             "numTel" => ["required", 'numeric', 'unique:users'],
             "sepcialite" => ["string"],
             "adresse" => ["string"],

@@ -51,7 +51,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = json_encode(['ROLE_ENTRAINEUR' => true]);
 
-        if($request->hasFile('image')){
+        if($request->hasFile('photo')){
             $user->photo = $request->photo->store('images');
         }
         $user->save();
