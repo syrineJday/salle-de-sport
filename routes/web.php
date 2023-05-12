@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\SeanceController;
 use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AbonnementController;
 use App\Http\Controllers\AbonnementController as AbonnementClientController;
@@ -39,7 +40,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('abonnements', [AbonnementClientController::class, 'index'])->name('abonnements.index');
+Route::resource('abonnements', AbonnementClientController::class);
 Route::get('entraineurs', function(){
     return view('entraineurs.index');
 })->name('entraineurs.index');
@@ -58,6 +59,8 @@ Route::get('schedule', function(){
 
     return view('schedule.index', compact('jours', 'seances'));
 })->name('schedule.index');
+
+Route::resource('activities', ActivityClientController::class);
 
 Route::get('contact', function(){
     return view('contact.index');

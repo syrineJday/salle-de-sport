@@ -31,7 +31,8 @@ class User extends Authenticatable
         "cin",
         "role",
         "password",
-        "date_naissance"
+        "date_naissance",
+        "description"
     ];
 
     /**

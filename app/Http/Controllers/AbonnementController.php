@@ -38,4 +38,11 @@ class AbonnementController extends Controller
         return redirect()->route('abonnements.index')->with('success',"Vous avez participé a l'abonnement $abonnement->label avec succée");
 
     }
+
+    public function show(Abonnement $abonnement)
+    {
+        $activities = $abonnement->activities()->get();
+
+        return view('abonnements.show', compact('activities', 'abonnement'));
+    }
 }

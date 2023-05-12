@@ -59,9 +59,15 @@
                         <span class="price">
                             {{ $abonnement->prix }}DT/{{ $abonnement->type }}
                         </span>
-                        <a href="{{ route('abonnement.participer', ['abonnement' => $abonnement]) }}" class="order-btn">
-                            Choisir plan <i class="fas fa-angle-double-right"></i>
-                        </a>
+                        <div class="d-flex flex-column" style="gap: 0px">
+
+                            <a href="{{ route('abonnement.participer', ['abonnement' => $abonnement]) }}" class="order-btn">
+                                Choisir plan <i class="fas fa-angle-double-right"></i>
+                            </a>
+                            <a href="{{ route('abonnements.show', ['abonnement' => $abonnement]) }}" class="order-btn">
+                                Voir détail <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </div>
                         <div class="shape">
                             <img src="{{ asset('frontOffice/assets/img/shape/shape-11.png') }}" alt="shape">
                         </div>
