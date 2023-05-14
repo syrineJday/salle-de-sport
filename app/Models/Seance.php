@@ -14,11 +14,16 @@ class Seance extends Model
         "startTime",
         "endTime",
         "user_id",
+        "entraineur_id",
         "salle_id",
         "activity_id"
     ];
 
     public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function entraineur(){
         return $this->belongsTo(User::class);
     }
 

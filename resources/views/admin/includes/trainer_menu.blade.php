@@ -6,7 +6,7 @@
 </li>
 
 <li class="nav-item">
-    <a class="nav-link @if(Request::is('admin/seances*')) @else collapsed @endif" href="{{ url('admin/seances') }}">
+    <a class="nav-link @if(Request::is('entraineur/seances*')) @else collapsed @endif" href="{{ route('entraineur.seances.index') }}">
         <i class="bi bi-grid"></i>
         <span>Séances</span>
     </a>

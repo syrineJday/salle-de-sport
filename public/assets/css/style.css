@@ -1289,6 +1289,19 @@ h6 {
     align-items: center;
     justify-content: center;
 }
+.btn-cancel{
+    background: #0e3c61;
+    border: none;
+    width: max-content;
+    height: 30px;
+    padding: 0px 10px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .add_button{
     background: #4e8aca;
     width: 40px;
@@ -1314,3 +1327,6 @@ h6 {
     max-width: max-content !important;
 }
 
+button:disabled{
+    cursor: not-allowed;
+}

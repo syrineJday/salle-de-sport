@@ -29,7 +29,7 @@
                                             {{ $activity->description }}
                                         </p>
                                         <a href="{{ route('activities.show', ['activity' => $activity]) }}" class="read-more">
-                                            AFFICHER TOUT
+                                            VOIR DETAIL
                                             <i class="fas fa-angle-double-right"></i>
                                         </a>
                                     </div>

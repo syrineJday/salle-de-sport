@@ -6,8 +6,6 @@
         @elseif(Auth::user()->isTrainer())
            
             @include('admin.includes.trainer_menu')
-        @else 
-            @include('admin.includes.etudiant_menu')
         @endif
     </ul>
 

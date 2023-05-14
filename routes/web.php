@@ -24,6 +24,10 @@ use App\Http\Controllers\AbonnementController as AbonnementClientController;
 |
 */
 
+Route::prefix('entraineur')->name('entraineur.')->group(function () {
+    Route::get('seances', [SeanceController::class, "index"])->name('seances.index');
+    Route::put('seances/{seance}/annuler', [SeanceController::class, "annuler"])->name('seances.annuler');
+});
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resources([
         "users" => UserController::class,

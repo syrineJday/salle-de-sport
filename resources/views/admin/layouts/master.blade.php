@@ -150,6 +150,41 @@
                     }
                 });
             });
+            $(".cancel-confirm").on('click', function(e){
+                e.preventDefault();
+                console.log($(this).data('model'));
+                var url = $(this).data('href');
+                var data = {
+                    "_token" : $('meta[name="csrf-token"]').attr('content'),
+                };
+                swal({
+                    title: "êtes vous sûr?",
+                    text: "Voulez vous annuler ce "+$(this).data('model'),
+                    icon: "primary",
+                    buttons: true,
+                    dangerMode: false,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        
+                        $.ajax({
+                            type: "PUT",
+                            data: data,
+                            url: url,
+                            success: function(response){
+                                console.log(response);
+                                swal(response.canceled, {
+                                    icon: "success",
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }
+                        })
+                    } else {
+                        swal("Votre action est annulé");
+                    }
+                });
+            });
         });
     </script>
 </body>

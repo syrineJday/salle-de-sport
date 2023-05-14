@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
+use App\Models\User;
 use App\Models\Seance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
 
 class SeanceController extends Controller
 {
@@ -22,9 +23,12 @@ class SeanceController extends Controller
         } 
         else {
             $seances = Auth::user()->seances()->paginate(10);
+            $seancesRemplacent = Seance::query()
+                ->where('entraineur_id', '=', Auth::user()->id)
+                ->get();
         }   
 
-        return view('admin.seances.index', compact('seances'));
+        return view('admin.seances.index', compact('seances', 'seancesRemplacent'));
     }
 
     /**
@@ -98,5 +102,14 @@ class SeanceController extends Controller
 
         return response()->json(['deleted' => "Séance a été supprimé avec succée"], 200);
     
+
+    }
+
+    public function annuler(Seance $seance){
+        $seance->canceled = true;
+
+        $seance->save();
+
+        return response()->json(['canceled' => "La séance de ".$seance->day." à ".$seance->startTime." est annulé"], 200);
     }
 }
