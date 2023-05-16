@@ -45,9 +45,17 @@
                                             {{ $seance->user->nom }}
                                             {{ $seance->user->prenom }}
                                         </span>
+                                        @guest 
+
+                                            <a href="{{ route('activity.details', ['activity' => $seance->activity]) }}"  class="boutonReserver">
+                                                Réserver
+                                            </a>
+                                        @else 
+
                                         <a href="javascript:void(0)" data-model="seance" data-href="{{ route('seances.reserver', ['seance' => $seance]) }}" class="boutonReserver reserve-confirm">
                                             Réserver
                                         </a>
+                                        @endif
 									</div>
 								</td>
                                 @endif

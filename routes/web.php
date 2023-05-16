@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use App\Models\Seance;
+use App\Models\Activity;
 use App\Models\UserSeance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +82,21 @@ Route::put('seances/{seance}/reserver', function(Seance $seance){
 })->name('seances.reserver')->middleware('auth');
 
 Route::resource('activities', ActivityClientController::class);
+
+Route::get('activity/{activity}', function(Activity $activity){
+    $jours = ['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche'];
+        $seanceIds = [];
+        $trainersIds = [];
+        foreach($activity->seances()->get() as $seance){
+            $seanceIds[] = $seance->id;
+            $trainersIds[] = $seance->user->id;
+        }
+
+        $seances =  Seance::whereIn('id', $seanceIds)->get();
+        $trainers =  User::whereIn('id', $trainersIds)->get();
+
+        return view('activities.show', compact('activity', 'jours', 'seances', 'trainers'));
+})->middleware('auth')->name('activity.details');
 
 Route::get('contact', function(){
     return view('contact.index');
