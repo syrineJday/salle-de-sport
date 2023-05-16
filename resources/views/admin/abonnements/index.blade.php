@@ -48,6 +48,9 @@
                                                 <a href="{{ route('admin.abonnements.show', ['abonnement' => $abonnement]) }}" data-model="abonnement" title="Détail d'un abonnement" class="btn-edit">
                                                     <i class="fa fa-info-circle"></i>
                                                 </a>
+                                                <a href="{{ route('admin.abonnements.abonnees', ['abonnement' => $abonnement]) }}"  style="width: max-content; padding: 0px 10px;" class="btn-edit">
+                                                    Voir abonnés
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

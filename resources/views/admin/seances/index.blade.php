@@ -88,6 +88,10 @@
                                                 <a href="{{ route('admin.seances.edit', ['seance' => $seance]) }}" data-model="seance" title="Modifier un activite" class="edit-confirm btn-edit">
                                                     <i class="fa fa-pen"></i>
                                                 </a>
+                                                <a href="{{ route('admin.seances.reservations', ['seance' => $seance]) }}"  style="width: max-content; padding: 0px 10px;" class="btn-edit">
+                                                    Voir réservation
+                                                </a>
+
                                             </div>
                                             @else 
                                             <div class="d-flex justify-content-around">

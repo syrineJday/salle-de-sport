@@ -5399,7 +5399,7 @@ label {
   left: 50%;
   top: 50%;
   width: 120%;
-  height: 120%;
+  height: max-content;
   transform: translate(-50%, -50%) scale(0.8);
   background: #fff;
   z-index: 99;
@@ -12809,4 +12809,14 @@ label {
     width: 90px;
     color: #2e2b2b;
     font-weight: 700;
+}
+.boutonReserver{
+    background: white;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 100;
+    display: inline-block;
+    color: red;
+    border-radius: 10px;
 }

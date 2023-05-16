@@ -7,6 +7,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontOffice/assets/img/logo/favicon.png') }}">
@@ -63,6 +65,51 @@
     <script src="{{ asset('frontOffice/assets/js/tilt.jquery.min.js') }}"></script>
     <script src="{{ asset('frontOffice/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('frontOffice/assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <script>
+         $(".reserve-confirm").on('click', function(e){
+          
+                e.preventDefault();
+                console.log($(this).data('model'));
+                var url = $(this).data('href');
+                var data = {
+                    "_token" : $('meta[name="csrf-token"]').attr('content'),
+                };
+                swal({
+                    title: "êtes vous sûr?",
+                    text: "Voulez vous réserver ce "+$(this).data('model'),
+                    icon: "primary",
+                    buttons: true,
+                    dangerMode: false,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        
+                        $.ajax({
+                            type: "PUT",
+                            data: data,
+                            url: url,
+                            statusCode: {
+                                419: function(xhr) {
+                                    
+                                    window.location = "/login";
+                                }
+                            },
+                            success: function(response){
+                                console.log(response);
+                                swal(response.reserved, {
+                                    icon: "success",
+                                }).then((result) => {
+                                    // location.reload();
+                                });
+                            }
+                        })
+                    } else {
+                        swal("Votre action est annulé");
+                    }
+                });
+            });
+    </script>
 </body>
 
 <!-- Mirrored from www.devsnews.com/template/gymee/gymee/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 23:22:46 GMT -->

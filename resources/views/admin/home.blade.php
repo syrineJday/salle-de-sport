@@ -11,64 +11,92 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Dernière inscriptions</h5>
+                        <h5 class="card-title">Dernière Séances</h5>
 
                         <!-- Default Table -->
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom </th>
-                                    <th scope="col">Prénom </th>
-                                    <th scope="col">E-mail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(App\Models\User::whereJsonContains('role->ROLE_ADMIN', true)->limit(5)->get() as $etudiant)
-                                    <tr>
-                                        <td>{{ $etudiant->id }}</td>
-                                        <td>{{ $etudiant->nom }}</td>
-                                        <td>{{ $etudiant->prenom }}</td>
-                                        <td>{{ $etudiant->email }}</td>
-                                        
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <!-- End Default Table Example -->
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-lg-6">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Produits</h5>
-
-                        <!-- Default Table -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Libéllé </th>
+                                    <th scope="col">Jour</th>
+                                    <th scope="col">Temps début</th>
+                                    <th scope="col">Temps fin</th>
+                                    <th scope="col">Entraineur</th>
+                                    <th scope="col">Salle</th>
+                                    <th scope="col">Activité</th>
+                                    <th scope="col">Aujourd'hui</th>
+                                    @if(Auth::user()->isAdmin())
+                                        <th scope="col">Etat</th>
+                                    @endif
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(App\Models\Salle::limit(5)->get() as $salle)
+                                @php
+                                    $days = [
+                                        "lundi" => "Mon",
+                                        "mardi" => "Tue",
+                                        "mercredi" => "Wed",
+                                        "jeudi" => "Thur",
+                                        "vendredi" => "Fri",
+                                        "samedi" => "Sat",
+                                        "dimanche" => "Sun",
+                                    ]
+                                @endphp
+                                @foreach(App\Models\Seance::take(5)->get() as $seance)
                                     <tr>
-                                        <td>{{ $salle->id }}</td>
-                                        <td>{{ $salle->label }}</td>
-                                        <td>{{ $salle->num }}</td>
+                                        <td>{{ $seance->id }}</td>
+                                        <td>{{ $seance->day }}</td>
+                                        <td>{{ $seance->startTime }}</td>
+                                        <td>{{ $seance->endTime }}</td>
+                                        <td>{{ $seance->user->nom }} {{ $seance->user->prenom }}</td>
+                                        <td>{{ $seance->salle->label }}</td>
+                                        <td>{{ $seance->activity->label }}</td>
                                         <td>
-                                            {{-- <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="étudiant" title="Supprimer un étudiant" data-url="{{ route('admin.matieres.destroy', ['matiere' => $salle]) }}" >
-                                                    <i class="fa fa-trash"></i>
+                                            @php 
+                                                $currentDay = date('D');
+                                                
+                                            @endphp 
+                                            @if($days[$seance->day] == $currentDay)
+                                                Ce jour
+                                            @else 
+                                                ---------
+                                            @endif
+                                        </td>
+                                        @if(Auth::user()->isAdmin())    
+                                        <td>
+                                            @if($seance->canceled == 1)
+                                                Annulé
+                                            @else   
+                                                -------
+                                            @endif  
+                                        </td>
+                                        @endif
+
+                                        <td>
+                                            @if(Auth::user()->isAdmin())
+                                            <div class="d-flex justify-content-around">
+                                                <button type="submit" class="btn-delete delete-confirm" data-model="seance" title="Supprimer un activitie" data-url="{{ route('admin.seances.destroy', ['seance' => $seance]) }}" >
+                                                    <i class="fa fa-trash" ></i>
                                                 </button>
-                                             
-                                            </div> --}}
+                                                <a href="{{ route('admin.seances.edit', ['seance' => $seance]) }}" data-model="seance" title="Modifier un activite" class="edit-confirm btn-edit">
+                                                    <i class="fa fa-pen"></i>
+                                                </a>
+                                            </div>
+                                            @else 
+                                            <div class="d-flex justify-content-around">
+                                                
+                                                <button 
+                                                @if($days[$seance->day] == $currentDay && $seance->canceled == true)
+                                                disabled 
+                                                @endif
+                                                data-href="{{ route('entraineur.seances.annuler', ['seance' => $seance]) }}" data-model="seance" class="btn-cancel cancel-confirm">
+                                                    Annuler Séance
+                                                </button>
+
+                                            </div>
+
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -80,6 +108,7 @@
 
 
             </div>
+          
             
         </div>
 

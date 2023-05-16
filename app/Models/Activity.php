@@ -13,7 +13,8 @@ class Activity extends Model
         "label",
         "description",
         "prix",
-        "category_id"
+        "category_id",
+        "prixSeance"
     ];
     
     public function abonnements(){

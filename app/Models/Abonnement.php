@@ -10,6 +10,7 @@ class Abonnement extends Model
     use HasFactory;
 
     protected $fillable = ["label", "prix", "type"];
+    
     public function users(){
         return $this->belongsToMany(User::class, 'users_abonnements', 'abonnement_id', 'user_id');
     }

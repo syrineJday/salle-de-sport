@@ -26,9 +26,18 @@ class SeanceController extends Controller
             $seancesRemplacent = Seance::query()
                 ->where('entraineur_id', '=', Auth::user()->id)
                 ->get();
+                return view('admin.seances.index', compact('seances', 'seancesRemplacent'));
         }   
 
-        return view('admin.seances.index', compact('seances', 'seancesRemplacent'));
+        return view('admin.seances.index', compact('seances'));
+    }
+
+    public function reservations(Seance $seance){
+
+        $reservations  = $seance->users()->get();
+        
+        return view('admin.seances.reservations', compact('reservations', 'seance'));
+
     }
 
     /**

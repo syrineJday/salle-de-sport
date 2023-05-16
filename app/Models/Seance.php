@@ -34,4 +34,8 @@ class Seance extends Model
     public function activity(){
         return $this->belongsTo(Activity::class);
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'user_seances', 'seance_id', 'user_id');
+    }
 }

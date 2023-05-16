@@ -21,6 +21,12 @@ class AbonnementController extends Controller
         return view('admin.abonnements.index', compact('abonnements'));
     }
 
+    public function abonnees(Abonnement $abonnement){
+        $abonnees  = $abonnement->users()->get();
+        
+        return view('admin.abonnements.abonnees', compact('abonnees', 'abonnement'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

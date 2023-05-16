@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Seance;
+use App\Models\UserSeance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -8,11 +9,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\SeanceController;
 use App\Http\Controllers\Admin\ActivityController;
-use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AbonnementController;
+use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\AbonnementController as AbonnementClientController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         "seances" => SeanceController::class,
         "abonnements" => AbonnementController::class
     ]);
+    Route::get('seances/{seance}/reservations', [SeanceController::class, "reservations"])->name('seances.reservations');
+    Route::get('abonnements/{abonnement}/abonnees', [AbonnementController::class, "abonnees"])->name('abonnements.abonnees');
 });
 
 
@@ -45,6 +47,7 @@ Route::get('/', function () {
 });
 
 Route::resource('abonnements', AbonnementClientController::class);
+
 Route::get('entraineurs', function(){
     return view('entraineurs.index');
 })->name('entraineurs.index');
@@ -63,6 +66,18 @@ Route::get('schedule', function(){
 
     return view('schedule.index', compact('jours', 'seances'));
 })->name('schedule.index');
+
+Route::put('seances/{seance}/reserver', function(Seance $seance){
+    $userSeance = new UserSeance();
+
+    $userSeance->user_id = Auth::user()->id;
+    $userSeance->seance_id = $seance->id;
+
+    $userSeance->save();
+
+    return response()->json(['reserved' => "La séance de ".$seance->day." à ".$seance->startTime." a bien été réservé"], 200);
+
+})->name('seances.reserver')->middleware('auth');
 
 Route::resource('activities', ActivityClientController::class);
 

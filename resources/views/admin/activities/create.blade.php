@@ -60,6 +60,18 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
+                                <label for="prixSeance" class="col-sm-2 col-form-label">Prix de séance </label>
+                                
+                                <div class="col-md-6 position-relative">
+                                    <input type="number" class="form-control @error('prixSeance') input-invalid @enderror" value="{{ old('prixSeance') }}" name="prixSeance" placeholder="Saisir prix de séance d'activité" id="prixSeance">
+                                    @error('prixSeance')
+                                        <div class="invalid-tooltip  d-block ">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <label for="prix" class="col-sm-2 col-form-label">Description </label>
                                 
                                 <div class="col-md-6 position-relative">
