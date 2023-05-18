@@ -12,8 +12,8 @@
                 <div class="feature-slider-1">
                     <div class="row">
 
-                        @foreach(App\Models\Activity::all() as $activity)
-                        <div class="col">
+                        @foreach($activities as $activity)
+                        <div class="col-4">
 
                             <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next"
                                 style="width: 290px; margin-right: 30px;" data-swiper-slide-index="6">

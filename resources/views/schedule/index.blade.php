@@ -9,10 +9,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="breadcrumb-content">
-                        <h3 class="title">L'emploi d'activité</h3>
+                        <h3 class="title">L'emploi du temps</h3>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active">Contact Us</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">Emploi du temps</li>
                         </ul>
                     </div>
                 </div>
