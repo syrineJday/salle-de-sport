@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Seance;
+use App\Models\Contact;
 use App\Models\Activity;
 use App\Models\UserSeance;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AbonnementController;
 use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\AbonnementController as AbonnementClientController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,6 +104,12 @@ Route::get('activity/{activity}', function(Activity $activity){
 Route::get('contact', function(){
     return view('contact.index');
 })->name('contact.index');
+
+Route::post('contact', function(Request $request){
+    Contact::create($request->all());
+
+    return view('contact.index')->with('success', 'Votre message a été envoyé avec succée');
+})->name('contact.store');
 
 Route::get('/home/dashboard', function(){
     return view('admin.home');

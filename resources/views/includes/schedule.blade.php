@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-xl-12">
                     <p>
-                        Vous pouvez réserver ici par séance, le prix de séance est {{$activity->prixSeance}} DT 
+                        Vous pouvez réserver ici par séance, le prix de séance est {{$seances->first()->activity->prixSeance}} DT 
                     </p>
 					<div class="schedule-table">
 						<table class="table bg-white">
@@ -44,17 +44,18 @@
 										<span>
                                             {{ $seance->user->nom }}
                                             {{ $seance->user->prenom }}
-                                        </span>
+                                        </span><br>
                                         @guest 
 
                                             <a href="{{ route('activity.details', ['activity' => $seance->activity]) }}"  class="boutonReserver">
                                                 Réserver
                                             </a>
                                         @else 
-
-                                        <a href="javascript:void(0)" data-model="seance" data-href="{{ route('seances.reserver', ['seance' => $seance]) }}" class="boutonReserver reserve-confirm">
-                                            Réserver
-                                        </a>
+											@if(!Request::is('schedule'))
+												<a href="javascript:void(0)" data-model="seance" data-href="{{ route('seances.reserver', ['seance' => $seance]) }}" class="boutonReserver reserve-confirm">
+													Réserver
+												</a>
+											@endif
                                         @endif
 									</div>
 								</td>
