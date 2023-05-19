@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SalleController;
@@ -132,3 +133,34 @@ Route::put('profile', [ProfileController::class, 'update'])->name('profile.updat
 Route::get('abonnement/{abonnement}/schedule', 
     [AbonnementClientController::class, 'schedule']
 )->name('abonnements.schedule')->middleware('auth');
+// PAYMENT PART 
+Route::get('activities/{seance}/reservation', function(Seance $seance) {
+    // dd($seance);
+    // return view('paiement.index', compact('seance'));
+    return view('activities.seanceReserver', compact('seance'));
+})->name('activities.seanceReserver')->middleware('auth');
+
+Route::get('paiement', function(Request $request) {
+    $days = [
+        "Mon" => "lundi",
+        "Tue" => "mardi",
+        "Wed" => "mercredi",
+        "Thu" => "jeudi",
+        "Fri" => "vendredi",
+        "Sat" => "samedi",
+        "Sun" => "dimanche",
+    ];
+    $dayDate = date('D', strtotime($request->date));
+
+    
+
+    $seance = Seance::find($request->seance_id);
+    // dump($seance->day);
+    if($seance->day != $days[$dayDate]){
+        return redirect()->back()->withErrors(['invalid-date' => "Choisir une date dans le jour de cette séance"]);
+    }
+    $date = $request->date;
+    return view('paiement.index', compact('seance', 'date'));
+})->name('paiement.index')->middleware('auth');
+
+Route::post('paiement', [PaymentController::class, 'store'])->name('paiement.store');

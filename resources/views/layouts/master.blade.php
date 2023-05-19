@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('frontOffice/assets/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontOffice/assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontOffice/assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontOffice/assets/css/successPayment.css') }}">
 
     <title>GYMEE - Fitness and Gym HTML5 Template</title>
 </head>

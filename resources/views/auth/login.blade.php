@@ -47,6 +47,10 @@
 							
 							<button type="submit" class="btn btn-gra">Connecter<i class="fas fa-angle-double-right"></i>
 							</button>
+                            <p class="mt-2">
+                                Vous n'avez pas un compte ? 
+                                <a href="{{ Route('register') }}">inscrivez-vous ici</a>
+                            </p>
 						</form>
 					</div>
 				</div>

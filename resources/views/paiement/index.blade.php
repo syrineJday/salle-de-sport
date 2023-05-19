@@ -1,50 +1,125 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontOffice/assets/css/stripe.css') }}">
 
-@section('content')
-<main>
-    <section class="breadcrumb-area pt-180 pb-180 pt-md-120 pb-md-120 pt-xs-100 pb-xs-100 bg-fix" data-overlay="black"
-        data-opacity="7" data-background="{{ asset('frontOffice/assets/img/bg/breadcrumb-bg-4.jpg') }}"
-        style="background-image: url(&quot;{{ asset('assets/frontOffice/img/bg/breadcrumb-bg-4.jpg')}}&quot;);">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <div class="breadcrumb-content">
-                        <h3 class="title">Se connecter</h3>
-                        <ul>
-                            <li><a href="index.html">Accueil</a></li>
-                            <li class="active">Se connecter</li>
-                        </ul>
-                    </div>
-                </div>
+</head>
+<body>
+    <div class="formular">
+        <h3>Formulaire de paiement par carte de crédit (STRIPE)</h3>
+        <hr />
+        <form action="{{ route('paiement.store') }}" method="POST" id="PaymentForm">
+            @csrf 
+            {{-- nom
+prenom
+email
+amount
+creditCard
+expiratedDate
+cvc --}}
+@if(count($errors) > 0)
+    @foreach ($errors->all() as $error)
+        <p class="invalid-feedback d-block">{{ $error }}</p>
+    @endforeach
+@endif
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="seance_id" value="{{ $seance->id }}">
+            <input type="hidden" name="date" value={{ $date }}>
+          <fieldset class="row">
+            <div class="form-group col-6">
+              <label for="Firstname">Nom</label>
+              <input type="text" size="35" name="nom" id="Firstname" value="" class="form-control">
+              @error('nom')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
-        </div>
-    </section>
-    <div class="contact-area pt-130 pb-130">
-		<div class="container">
-			<div class="row justify-content-between">
-				<div class="col-md-12 col-lg-12">
-                    <div class="section-title-2 text-right bar-theme-color contact-title">
-                        <h3>Connectez-vous à travers ce formulaire</h3>
-                        <span>Hey</span>
-                    </div>
-					<div class="contact-form">
-						<form action="{{ route('login') }}" method="post">
-                            @csrf 
-							<div class="input-wrap input-icon icon-name">
-								<input type="text" placeholder="E-mail adresse" name="email">
-							</div>
-							<div class="input-wrap input-icon icon-email">
-								<input type="password" placeholder="Mot de passe" name="password">
-							</div>
-							
-							
-							<button type="submit" class="btn btn-gra">Connecter<i class="fas fa-angle-double-right"></i>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</main>
-@endsection
+            <div class="form-group col-6">
+              <label for="Lastname">Prenom</label>
+              <input type="text" size="35" name="prenom" id="Lastname" class="form-control" value="">
+              @error('prenom')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+            <div class="form-group col-6">
+              <label for="E-Mail">E-Mail</label>
+              <input type="text" size="35" name="email" id="E-Mail" value="" class="form-control">
+              @error('email')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+            <div class="form-group col-6">
+              <label for="Smount">Total (en DT)</label>
+              <div class="input-group">
+                
+                <input type="hidden" size="35" name="amount" value="{{ $seance->activity->prixSeance }}" class="disabled form-control">
+                <input type="text" size="35"  value="{{ $seance->activity->prixSeance }}" disabled class="disabled form-control">
+              </div>
+            </div>
+          </fieldset>
+      
+          <div class="payment-errors bg-danger"></div>
+          <fieldset>
+            <div class="form-group col-6">
+              <label>
+                <span>Credit Card Number</span>
+              </label>
+              <input type="text" size="20" name="creditCard" data-stripe="number" class="form-control" placeholder="4242424242424242" value="" />
+              @error('creditCard')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+      
+            <div class="form-group form-group col-2">
+              <label>
+                <span>CVC Code:</span>
+              </label>
+              <input type="text" name="cvc" size="4" data-stripe="cvc" class="form-control" />
+              @error('cvc')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+      
+            <div class="form-group col-4">
+              <div class="col-xs-12">
+                <label>
+                  <span>Date d'expiration de la carte<small> (MM/YY)</small>:</span>
+                </label>
+              </div>
+              <div class="input-group">
+                <input type="date" class="form-control" name="expiratedDate">
+              </div>
+              @error('expiratedDate')
+                  <span class="invalid-feedback d-block" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+      
+      
+          </fieldset>
+          <div class="center">
+            <button type="submit" class="btn btn-success" />Submit</button>
+          </div>
+      
+        </form>
+      </div>
+    <script src="{{ asset('boostrap/js/bootstrap.js') }}"></script>
+      
+</body>
+</html>
