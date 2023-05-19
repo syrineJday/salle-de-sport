@@ -2595,7 +2595,9 @@ label {
   transition: all 0.3s linear 0s;
 }
 .service-wrap-2 .service-img img {
-  width: 100%;
+    width: 100%;
+    max-height: 350px;
+    height: 350px;
 }
 .service-wrap-2 .service-content {
   position: absolute;

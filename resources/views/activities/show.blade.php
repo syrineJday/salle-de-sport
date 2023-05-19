@@ -2,7 +2,7 @@
 
 @section('content')
 <main>
-    <section class="breadcrumb-area pt-180 pb-180 pt-md-120 pb-md-120 pt-xs-100 pb-xs-100 bg-fix" data-overlay="black"
+    <section class="breadcrumb-area pt-50 pb-50 bg-fix" data-overlay="black"
         data-opacity="7" data-background="assets/img/bg/breadcrumb-bg-4.jpg"
         style="background-image: url(&quot;assets/img/bg/breadcrumb-bg-4.jpg&quot;);">
         <div class="container">
