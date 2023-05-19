@@ -27,11 +27,7 @@
 							
 						</li>
 					
-                        @if(Auth::check())
-						<li class="">
-							<a href="{{ route('schedule.index') }}">Schedule</a>
-						</li>
-                        @endif
+                      
 
                         @guest
                         <li class="has-dropdown">   
@@ -55,7 +51,8 @@
                             {{ Auth::user()->nom }}
                             {{ Auth::user()->prenom }}
                             <ul class="sub-menu">
-								<li><a href="{{ route('login') }}">Mon profile</a></li>
+								<li><a href="{{ route('profile') }}">Mon profile</a></li>
+								<li><a href="{{ route('schedule.index') }}">Mon emploi</a></li>
 								<li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

@@ -58,8 +58,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Abonnement::class, 'users_abonnements', 'user_id', 'abonnement_id');
     }
 
-    public function seancesActivity(){
-        return $this->belongsToMany(Abonnement::class, 'user_seances', 'user_id', 'seance_id');
+    public function seancesReserver(){
+        return $this->belongsToMany(Seance::class, 'user_seances', 'user_id', 'seance_id');
     }
 
     public function isAdmin(){
@@ -71,6 +71,11 @@ class User extends Authenticatable
     public function isTrainer(){
 
         return str_contains(Auth::user()->role, 'ROLE_ENTRAINEUR');
+
+    }
+    public function isAbonne(){
+
+        return str_contains(Auth::user()->role, 'ROLE_ABONNE');
 
     }
 

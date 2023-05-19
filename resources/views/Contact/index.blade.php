@@ -21,11 +21,23 @@
     </section>
     <div class="contact-area pt-130 pb-130">
 		<div class="container">
+			@if(request()->session()->has('success'))
+				<div class="alert alert-success">
+					almzdklm
+				</div>
+			@endif
 			<div class="row justify-content-between">
 				<div class="col-md-6 col-lg-5">
 					<div class="contact-text mb-xs-50">
 						<div class="section-title-2 text-right bar-theme-color contact-title">
 							<h3>N'hésitez pas à nous contacter ou à nous envoyer un e-mail</h3>
+							@if(Session::has('success'))
+							 	<span>
+
+									 {{ Session::get('success') }}
+								</span>
+
+							@endif
 							<span>Salut</span>
 						</div>
 						<div class="contact-info justify-content-end">
@@ -59,25 +71,23 @@
 				</div>
 				<div class="col-md-6 col-lg-6">
 					<div class="contact-form">
-						<form action="#">
+						<form action="{{ route('contact.store') }}" method="post">
+							@csrf
 							<div class="input-wrap input-icon icon-name">
-								<input type="text" placeholder="Full Name Here">
+								<input type="text" name="nom" placeholder="Nom  et Prénom">
 							</div>
 							<div class="input-wrap input-icon icon-email">
-								<input type="text" placeholder="Email Address">
+								<input type="text" name="email" placeholder="Adresse Email">
 							</div>
 							<div class="input-wrap input-icon icon-select">
-								<select name="" id="">
-									<option value="">Subject</option>
-									<option value="">Web</option>
-									<option value="">UX/UI</option>
-								</select>
+								
+								<input type="text" name="sujet" placeholder="Sujet">
 							</div>
 							<div class="input-wrap input-icon icon-msg">
-								<textarea rows="5" placeholder="Write Message" spellcheck="false"></textarea>
+								<textarea rows="5" name="message" placeholder="Write Message" spellcheck="false"></textarea>
 							</div>
 							<button type="submit" class="btn btn-gra">
-								Send message <i class="fas fa-angle-double-right"></i>
+								Envoyer message <i class="fas fa-angle-double-right"></i>
 							</button>
 						</form>
 					</div>

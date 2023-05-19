@@ -2,11 +2,14 @@
 
 use App\Models\User;
 use App\Models\Seance;
+use App\Models\Contact;
 use App\Models\Activity;
 use App\Models\UserSeance;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\SeanceController;
@@ -15,6 +18,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AbonnementController;
 use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\AbonnementController as AbonnementClientController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +49,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $activities = Activity::all();
+    return view('welcome', compact('activities'));
 });
 
 Route::resource('abonnements', AbonnementClientController::class);
@@ -56,6 +61,8 @@ Route::get('entraineurs', function(){
 
 Route::get('schedule', function(){
     $jours = ['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche'];
+    $seances = [];
+    $seanceIds = [];
     foreach(Auth::user()->abonnements()->get() as $abonnement){
         foreach($abonnement->activities()->get() as $activity){
             foreach($activity->seances()->get() as $seance){
@@ -63,8 +70,10 @@ Route::get('schedule', function(){
             }
         }
     }
+    if(count($seanceIds) > 0){
 
-    $seances =  Seance::whereIn('id', $seanceIds)->get();
+        $seances =  Seance::whereIn('id', $seanceIds)->get();
+    }
 
     return view('schedule.index', compact('jours', 'seances'));
 })->name('schedule.index');
@@ -102,6 +111,12 @@ Route::get('contact', function(){
     return view('contact.index');
 })->name('contact.index');
 
+Route::post('contact', function(Request $request){
+    Contact::create($request->all());
+
+    return view('contact.index')->with('success', 'Votre message a été envoyé avec succée');
+})->name('contact.store');
+
 Route::get('/home/dashboard', function(){
     return view('admin.home');
 });
@@ -112,4 +127,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('abonnement/{abonnement}/schedule', 
+    [AbonnementClientController::class, 'schedule']
+)->name('abonnements.schedule')->middleware('auth');

@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Activity::factory(4)->create();
         \App\Models\Seance::factory(10)->create();
         \App\Models\Abonnement::factory(3)->create();
-        \App\Models\UsersAbonnement::factory(3)->create();
+        // \App\Models\UsersAbonnement::factory(3)->create();
         \App\Models\AbonnementActivity::factory(3)->create();
         \App\Models\Horaire::factory(3)->create();
     }
