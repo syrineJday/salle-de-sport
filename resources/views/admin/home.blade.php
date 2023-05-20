@@ -3,115 +3,100 @@
 @section('content')
 <main id="main" class="main">
 
-
+    <div class="pagetitle">
+        <h1>Accueil</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
     <section class="section dashboard">
-        
         <div class="row">
+            <!-- Left side columns -->
             <div class="col-lg-12">
+                <div class="row">
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Dernière Séances</h5>
+                    <!-- Sales Card -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card info-card sales-card">
 
-                        <!-- Default Table -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Jour</th>
-                                    <th scope="col">Temps début</th>
-                                    <th scope="col">Temps fin</th>
-                                    <th scope="col">Entraineur</th>
-                                    <th scope="col">Salle</th>
-                                    <th scope="col">Activité</th>
-                                    <th scope="col">Aujourd'hui</th>
-                                    @if(Auth::user()->isAdmin())
-                                        <th scope="col">Etat</th>
-                                    @endif
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $days = [
-                                        "lundi" => "Mon",
-                                        "mardi" => "Tue",
-                                        "mercredi" => "Wed",
-                                        "jeudi" => "Thur",
-                                        "vendredi" => "Fri",
-                                        "samedi" => "Sat",
-                                        "dimanche" => "Sun",
-                                    ]
-                                @endphp
-                                @foreach(App\Models\Seance::take(5)->get() as $seance)
-                                    <tr>
-                                        <td>{{ $seance->id }}</td>
-                                        <td>{{ $seance->day }}</td>
-                                        <td>{{ $seance->startTime }}</td>
-                                        <td>{{ $seance->endTime }}</td>
-                                        <td>{{ $seance->user->nom }} {{ $seance->user->prenom }}</td>
-                                        <td>{{ $seance->salle->label }}</td>
-                                        <td>{{ $seance->activity->label }}</td>
-                                        <td>
-                                            @php 
-                                                $currentDay = date('D');
-                                                
-                                            @endphp 
-                                            @if($days[$seance->day] == $currentDay)
-                                                Ce jour
-                                            @else 
-                                                ---------
-                                            @endif
-                                        </td>
-                                        @if(Auth::user()->isAdmin())    
-                                        <td>
-                                            @if($seance->canceled == 1)
-                                                Annulé
-                                            @else   
-                                                -------
-                                            @endif  
-                                        </td>
-                                        @endif
+                            
 
-                                        <td>
-                                            @if(Auth::user()->isAdmin())
-                                            <div class="d-flex justify-content-around">
-                                                <button type="submit" class="btn-delete delete-confirm" data-model="seance" title="Supprimer un activitie" data-url="{{ route('admin.seances.destroy', ['seance' => $seance]) }}" >
-                                                    <i class="fa fa-trash" ></i>
-                                                </button>
-                                                <a href="{{ route('admin.seances.edit', ['seance' => $seance]) }}" data-model="seance" title="Modifier un activite" class="edit-confirm btn-edit">
-                                                    <i class="fa fa-pen"></i>
-                                                </a>
-                                            </div>
-                                            @else 
-                                            <div class="d-flex justify-content-around">
-                                                
-                                                <button 
-                                                @if($days[$seance->day] == $currentDay && $seance->canceled == true)
-                                                disabled 
-                                                @endif
-                                                data-href="{{ route('entraineur.seances.annuler', ['seance' => $seance]) }}" data-model="seance" class="btn-cancel cancel-confirm">
-                                                    Annuler Séance
-                                                </button>
+                            <div class="card-body">
+                                <h5 class="card-title">Abonnés </h5>
 
-                                            </div>
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-cart"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>
+                                            {{ App\Models\User::whereJsonContains('role->ROLE_ABONNE', true)->count() }}
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
 
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <!-- End Default Table Example -->
-                    </div>
+                        </div>
+                    </div><!-- End Sales Card -->
+
+                    <!-- Revenue Card -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card info-card revenue-card">
+
+
+                            <div class="card-body">
+                                <h5 class="card-title">Entraineurs</h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>
+                                            {{ App\Models\User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->count() }}
+                                        </h6>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Revenue Card -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Abonnements</h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>
+                                            {{ App\Models\Abonnement::count() }}
+                                        </h6>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Revenue Card -->
+
+
                 </div>
-
-
             </div>
-          
-            
-        </div>
 
+
+
+
+        </div>
     </section>
 
 </main>

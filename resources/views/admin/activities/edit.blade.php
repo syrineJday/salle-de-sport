@@ -4,7 +4,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-        <h1>Ajouter un activité</h1>
+        <h1>Modifier un activité</h1>
 
     </div><!-- End Page Title -->
     <section class="section">
@@ -13,7 +13,6 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Ajouter un activité </h5>
                         <!-- Default Table -->
                         <form action="{{ route('admin.activities.update', ['activity' => $activity]) }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -36,23 +35,11 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Libéllé </label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Nom d'activité </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ $activity->label }}" name="label" placeholder="Saisir libéllé d'activité" id="validationTooltip03">
+                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ $activity->label }}" name="label" placeholder="Saisir Nom d'activité " id="validationTooltip03">
                                     @error('label')
-                                        <div class="invalid-tooltip  d-block ">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Tarif </label>
-                                
-                                <div class="col-md-6 position-relative">
-                                    <input type="number" class="form-control @error('prix') input-invalid @enderror" value="{{ $activity->prix }}" name="prix" placeholder="Saisir tarif d'activité" id="validationTooltip03">
-                                    @error('prix')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
                                         </div>

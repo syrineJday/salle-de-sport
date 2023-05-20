@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Seance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SeanceRequest;
 
 class SeanceController extends Controller
 {
@@ -35,7 +36,10 @@ class SeanceController extends Controller
     public function reservations(Seance $seance){
 
         $reservations  = $seance->users()->get();
-        
+        // foreach($reservations as $reservation)
+        // {
+        //     dd($reservation->pivot);
+        // }
         return view('admin.seances.reservations', compact('reservations', 'seance'));
 
     }
@@ -56,7 +60,7 @@ class SeanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeanceRequest $request)
     {
         Seance::create($request->all());
 

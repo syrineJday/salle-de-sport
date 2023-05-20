@@ -13,13 +13,13 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Modifier une salle </h5>
                         <!-- Default Table -->
                         <form action="{{ route('admin.salles.update', ['salle' => $salle]) }}" method="post">
                             @csrf
                             @method('put')
+                            <input type="hidden" name="salle_id" value="{{ $salle->id }}">
                             <div class="row mt-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Libéllé </label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Nom de salle </label>
                                 
                                 <div class="col-md-6 position-relative">
                                     <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ $salle->label }}" name="label" placeholder="Saisir libéllé de salle" id="validationTooltip03">

@@ -23,8 +23,7 @@
                                     <th scope="col">Numéro de téléphone</th>
                                     <th scope="col">CIN</th>
                                     <th scope="col">Adresse</th>
-                                   
-                                    <th scope="col">Date de naissance</th>
+                                    <th scope="col">Date de réservation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +35,7 @@
                                         <td>{{ $user->numTel }}</td>
                                         <td>{{ $user->cin }}</td>
                                         <td>{{ $user->adresse }}</td>
-                                        <td>{{ $user->date_naissance }}</td>
+                                        <td>{{ $user->pivot->date }}</td>
                                       
                                     </tr>
                                 @endforeach

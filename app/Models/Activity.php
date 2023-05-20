@@ -12,8 +12,6 @@ class Activity extends Model
     protected $fillable = [
         "label",
         "description",
-        "prix",
-        "category_id",
         "prixSeance"
     ];
     
@@ -21,9 +19,7 @@ class Activity extends Model
         return $this->belongsToMany(Abonnement::class, 'abonnement_activities', 'acitivty_id', 'abonnement_id');
     }
 
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+    
 
     public function seances(){
         return $this->hasMany(Seance::class);

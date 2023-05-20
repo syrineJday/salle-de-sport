@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xl-6 col-lg-8 col-md-10">
                 <div class="section-title mb-70 mb-xs-50">
-                    <h3>Bienvenue à notre activités</h3>
+                    <h3>Bienvenue à nos activités</h3>
                 </div>
             </div>
         </div>

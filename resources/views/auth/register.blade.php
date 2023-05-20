@@ -57,12 +57,6 @@
                                 @enderror
 							</div>
 							<div class="input-wrap input-icon icon-name">
-								<input type="number" placeholder="Numéro mobile" name="numMobile">
-                                @error('numMobile')
-                                    <p>{{ $message }}</p>
-                                @enderror
-							</div>
-							<div class="input-wrap input-icon icon-name">
 								<input type="number" placeholder="Carte d'identité national" name="cin">
                                 @error('cin')
                                     <p>{{ $message }}</p>
@@ -74,7 +68,7 @@
                                     <p>{{ $message }}</p>
                                 @enderror
 							</div>
-							<div class="input-wrap input-icon icon-name">
+							<div class="input-wrap ">
 								<input type="date" placeholder="Date de naissance" name="date_naissance">
                                 @error('date_naissance')
                                     <p>{{ $message }}</p>
@@ -87,17 +81,17 @@
                                 @enderror
 							</div>
 							<div class="input-wrap input-icon icon-email">
-								<input type="text" placeholder="Mot de passe" name="password">
+								<input type="password" placeholder="Mot de passe" name="password">
                                 @error('password')
                                     <p>{{ $message }}</p>
                                 @enderror
 							</div>
 							<div class="input-wrap input-icon icon-email">
-								<input type="text" placeholder="Confirmer mot de passe" name="password_confirmation">
+								<input type="password" placeholder="Confirmer mot de passe" name="password_confirmation">
 							</div>
 							
 							
-							<button type="submit" class="btn btn-gra">Connecter<i class="fas fa-angle-double-right"></i>
+							<button type="submit" class="btn btn-gra">Enregister<i class="fas fa-angle-double-right"></i>
 							</button>
 						</form>
 					</div>

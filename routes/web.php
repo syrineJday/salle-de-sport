@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Seance;
 use App\Models\Contact;
 use App\Models\Activity;
+use App\Models\Abonnement;
 use App\Models\UserSeance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         "users" => UserController::class,
         "salles" => SalleController::class,
         "activities" => ActivityController::class,
-        "categories" => CategoryController::class,
         "seances" => SeanceController::class,
         "abonnements" => AbonnementController::class
     ]);
@@ -153,7 +153,7 @@ Route::get('paiement', function(Request $request) {
     $dayDate = date('D', strtotime($request->date));
 
     
-
+    
     $seance = Seance::find($request->seance_id);
     // dump($seance->day);
     if($seance->day != $days[$dayDate]){
@@ -161,6 +161,11 @@ Route::get('paiement', function(Request $request) {
     }
     $date = $request->date;
     return view('paiement.index', compact('seance', 'date'));
+
 })->name('paiement.index')->middleware('auth');
+Route::get('abonnement/{abonnement}/}paiement', function(Abonnement $abonnement) {
+    return view('abonnements.paiement', compact('abonnement'));
+})->name('abonnement.paiement.index')->middleware('auth');
+// {{ route('abonnement.participer', ['abonnement' => $abonnement]) }}
 
 Route::post('paiement', [PaymentController::class, 'store'])->name('paiement.store');

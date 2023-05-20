@@ -2,23 +2,7 @@
 
 @section('content')
     <main>
-        <section class="breadcrumb-area pt-180 pb-180 pt-md-120 pb-md-120 pt-xs-100 pb-xs-100 bg-fix" data-overlay="black"
-            data-opacity="7" data-background="assets/img/bg/breadcrumb-bg-4.jpg"
-            style="background-image: url(&quot;assets/img/bg/breadcrumb-bg-4.jpg&quot;);">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <div class="breadcrumb-content">
-                            <h3 class="title">Mon Profil</h3>
-                            <ul>
-                                <li><a href="{{ url('/') }}">Accueil</a></li>
-                                <li class="active">Mon Profil</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <div class="contact-area pt-130 pb-130">
             <div class="container">
                 @if ($message = Session::get('success'))
@@ -28,7 +12,45 @@
                     </div>
                 @endif
                 <div class="row s">
-                    <div class="col-xl-11 col-lg-11">
+                    <div class="col-xl-4">
+                        <div class="trainer-details-thumb mb-md-50 mb-xs-50 d-flex align-items-center">
+                            <img src="{{ asset('storage/'.Auth::user()->photo) }}" alt="thumb" style="width: 100px;height: 100px;border-radius: 50%;">
+                            <h3 class="mb-0 pb-0 ml-2">
+                                {{ Auth::user()->nom }}
+                                {{ Auth::user()->prenom }}
+                            </h3>
+                        </div>
+                        <div class="trainer-details-content pl-0">
+                            <div class="trainer-info mt-50 mb-40">
+                                <div class="info-icon">
+                                    <i class="flaticon-email"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5>Email</h5>
+                                    <span>{{ Auth::user()->email }}</span>
+                                </div>
+                            </div>
+                            <div class="trainer-info mb-40">
+                                <div class="info-icon">
+                                    <i class="flaticon-whatsapp"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5>Téléphone</h5>
+                                    <span class="heading-color">{{ Auth::user()->numTel }}</span>
+                                </div>
+                            </div>
+                            <div class="trainer-info">
+                                <div class="info-icon">
+                                    <i class="flaticon-pin"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5>Location</h5>
+                                    <span class="heading-color">{{ Auth::user()->adresse }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
                         <div class="review-tab-wrapper">
                             <div class="nav review-tab" id="review-tabs" role="tablist">
                                 <a class="show active" id="r-tabs-1" data-toggle="tab" href="#mesInformations" role="tab" aria-controls="mesInformations" aria-selected="true">

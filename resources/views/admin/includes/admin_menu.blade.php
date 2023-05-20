@@ -29,12 +29,7 @@
         <span>Activités</span>
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link @if(Request::is('admin/categories*')) @else collapsed @endif" href="{{ url('admin/categories') }}">
-        <i class="bi bi-grid"></i>
-        <span>Catégories</span>
-    </a>
-</li>
+
 <li class="nav-item">
     <a class="nav-link @if(Request::is('admin/seances*')) @else collapsed @endif" href="{{ url('admin/seances') }}">
         <i class="bi bi-grid"></i>

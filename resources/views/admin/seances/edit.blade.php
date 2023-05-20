@@ -13,7 +13,6 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Modifier une séance </h5>
                         <!-- Default Table -->
                         <form action="{{ route('admin.seances.update', ['seance' => $seance]) }}" method="post" enctype="multipart/form-data">
                             @csrf

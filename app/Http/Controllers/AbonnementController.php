@@ -44,8 +44,17 @@ class AbonnementController extends Controller
     public function show(Abonnement $abonnement)
     {
         $activities = $abonnement->activities()->get();
+        $jours = ['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche'];
+        $seanceIds = [];
+        foreach($activities as $activity){
 
-        return view('abonnements.show', compact('activities', 'abonnement'));
+            foreach($activity->seances()->get() as $seance){
+                $seanceIds[] = $seance->id;
+            }
+        }
+
+        $seances =  Seance::whereIn('id', $seanceIds)->get();
+        return view('abonnements.show', compact('activities', 'abonnement', 'seances', 'jours'));
     }
 
     public function schedule(Abonnement $abonnement){

@@ -15,7 +15,7 @@
                         <div class="class-details-thumb mb-50">
                             <img src="{{ asset('storage/'.$seance->activity->image) }}" alt="thumb">
                         </div>
-                        <h3>{{ $seance->activity->label }}</h3>
+                        <h4>{{ $seance->activity->label }}</h4>
                         <p>
                             {{ $seance->activity->description }}
                         </p>
@@ -64,22 +64,25 @@
                            
                             <h3 class="widget-title">Seance réservé</h3>
                             <div class="class-download-widget">
-                                <h2>
+                                <h4>
                                     Jour: <span style="font-weight: 300">{{ $seance->day }}</span>
-                                </h2>
+                                </h4>
                                 
-                                <h2>
+                                <h4>
                                     Heure Début: <span style="font-weight: 300">{{ $seance->startTime }}</span>
-                                </h2>
-                                <h2>
+                                </h4>
+                                <h4>
                                     Heure Fin: <span style="font-weight: 300">{{ $seance->startTime }}</span>
-                                </h2>
-                                <h2>
-                                    Salle: <span style="font-weight: 300">{{ $seance->salle->label }}</span>
-                                </h2>
-                                <h2>
+                                </h4>
+                                <h4>
+                                    Salle: <span style="font-weight: 300">
+                                        {{ $seance->salle->label }}, 
+                                        {{ $seance->salle->num }}
+                                    </span>
+                                </h4>
+                                <h4>
                                     Prix: <span style="font-weight: 300">{{ $seance->activity->prixSeance }}DT</span>
-                                </h2>
+                                </h4>
                                 <form action="{{ route('paiement.index') }}" method="get">
                                     <input type="hidden" value="{{$seance->id}}" name="seance_id">
                                     <label for="date">Date</label>

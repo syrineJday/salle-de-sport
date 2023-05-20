@@ -6,6 +6,7 @@ use App\Models\Salle;
 use Illuminate\Http\Request;
 use App\Http\Requests\SalleRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SalleUpdateRequest;
 
 
 class SalleController extends Controller
@@ -74,8 +75,20 @@ class SalleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SalleRequest $request, Salle $salle)
+    public function update(Request $request, Salle $salle)
     {
+        if($salle->num != $request->num){
+
+            $request->validate([
+                "label" => ['required' , 'regex:/^[a-zA-Z ]+$/'],
+                "num" => ['required', 'unique:salles'],
+            ]);
+        } else {
+            $request->validate([
+                "label" => ['required' , 'regex:/^[a-zA-Z ]+$/'],
+                "num" => ['required'],
+            ]);
+        }
         $salle->update($request->all());
 
         return redirect()->route('admin.salles.index');

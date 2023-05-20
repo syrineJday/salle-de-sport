@@ -22,7 +22,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">label</th>
+                                    <th scope="col">Nom de salle</th>
                                     <th scope="col">Numéro de salle</th>
                                     <th scope="col">Action</th>
                                 </tr>

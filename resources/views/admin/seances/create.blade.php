@@ -13,7 +13,6 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Ajouter une séance </h5>
                         <!-- Default Table -->
                         <form action="{{ route('admin.seances.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -42,7 +41,7 @@
                                     <select class="form-select" name="entraineur_id" aria-label="Default select example">
                                         <option selected="" disabled>Sélectionner un entraineur</option>
                                         @foreach(App\Models\User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->get() as $user)
-                                            <option value="{{ $user->id }}">{{ $user->nom }}{{ $user->prenom }}</option>
+                                            <option value="{{ $user->id }}">{{ $user->nom }} {{ $user->prenom }}</option>
                                         @endforeach
                                     </select>
                                     @error('entraineur_id')
@@ -53,13 +52,15 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Salle </label>
+                                <label for="prix" class="col-sm-2 col-form-label">Numéro de salle </label>
                                 
                                 <div class="col-md-6 position-relative">
                                     <select class="form-select" name="salle_id" aria-label="Default select example">
                                         <option selected="" disabled>Sélectionner une salle</option>
                                         @foreach(App\Models\Salle::all() as $salle)
-                                            <option value="{{ $salle->id }}">{{ $salle->label }}</option>
+                                            <option value="{{ $salle->id }}">
+                                                 {{ $salle->label }} : {{ $salle->num }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('salle_id')

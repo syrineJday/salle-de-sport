@@ -23,8 +23,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Image</th>
-                                    <th scope="col">Label</th>
-                                    <th scope="col">Prix</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prix Séance</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Actions</th>
                                 </tr>
@@ -35,7 +35,7 @@
                                         <td>{{ $activity->id }}</td>
                                         <td><img src="{{ asset('storage/'.$activity->image) }}" width="160" height="160" style="border-radius: 50%; object-fit: cover;"></td>
                                         <td>{{ $activity->label }}</td>
-                                        <td>{{ $activity->prix }}</td>
+                                        <td>{{ $activity->prixSeance }}</td>
                                         <td>{{ $activity->category->label }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
@@ -44,6 +44,9 @@
                                                 </button>
                                                 <a href="{{ route('admin.activities.edit', ['activity' => $activity]) }}" data-model="activite" title="Modifier un activite" class="edit-confirm btn-edit">
                                                     <i class="fa fa-pen"></i>
+                                                </a>
+                                                <a href="{{ route('admin.activities.show', ['activity' => $activity]) }}" data-model="abonnement" title="Détail d'un abonnement" class="btn-edit">
+                                                    <i class="fa fa-info-circle"></i>
                                                 </a>
                                             </div>
                                         </td>

@@ -13,46 +13,15 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Ajouter un activité </h5>
                         <!-- Default Table -->
                         <form action="{{ route('admin.activities.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-
                             <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Catégories </label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Nom d'activité </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <select class="form-select" name="category_id" aria-label="Default select example">
-                                        <option selected="" disabled>Sélectionner un catégorie</option>
-                                        @foreach(App\Models\Category::all() as $category)
-                                            <option value="{{ $category->id }}">{{ $category->label }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category_id')
-                                        <div class="invalid-tooltip  d-block ">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Libéllé </label>
-                                
-                                <div class="col-md-6 position-relative">
-                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ old('label') }}" name="label" placeholder="Saisir libéllé d'activité" id="validationTooltip03">
+                                    <input type="text" class="form-control @error('label') input-invalid @enderror" value="{{ old('label') }}" name="label" placeholder="Saisir Nom d'activité" id="validationTooltip03">
                                     @error('label')
-                                        <div class="invalid-tooltip  d-block ">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Tarif </label>
-                                
-                                <div class="col-md-6 position-relative">
-                                    <input type="number" class="form-control @error('prix') input-invalid @enderror" value="{{ old('prix') }}" name="prix" placeholder="Saisir tarif d'activité" id="validationTooltip03">
-                                    @error('prix')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
                                         </div>

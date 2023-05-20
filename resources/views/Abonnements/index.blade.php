@@ -2,7 +2,7 @@
 
 @section('content')
 <main>
-    <section class="breadcrumb-area pt-180 pb-180 pt-md-120 pb-md-120 pt-xs-100 pb-xs-100 bg-fix" data-overlay="black"
+    <section class="breadcrumb-area pt-50 pb-50 pt-md-120 pb-md-120 pt-xs-100 pb-xs-100 bg-fix" data-overlay="black"
         data-opacity="7" data-background="assets/img/bg/breadcrumb-bg-4.jpg"
         style="background-image: url(&quot;assets/img/bg/breadcrumb-bg-4.jpg&quot;);">
         <div class="container">
@@ -60,10 +60,6 @@
                             {{ $abonnement->prix }}DT/{{ $abonnement->type }}
                         </span>
                         <div class="d-flex flex-column" style="gap: 0px">
-
-                            <a href="{{ route('abonnement.participer', ['abonnement' => $abonnement]) }}" class="order-btn">
-                                Choisir plan <i class="fas fa-angle-double-right"></i>
-                            </a>
                             <a href="{{ route('abonnements.show', ['abonnement' => $abonnement]) }}" class="order-btn">
                                 Voir détail <i class="fas fa-angle-double-right"></i>
                             </a>

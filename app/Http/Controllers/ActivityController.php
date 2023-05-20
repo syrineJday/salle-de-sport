@@ -41,6 +41,7 @@ class ActivityController extends Controller
 
         $seances =  Seance::whereIn('id', $seanceIds)->get();
         $trainers =  User::whereIn('id', $trainersIds)->get();
+        
 
         return view('activities.show', compact('activity', 'jours', 'seances', 'trainers'));
     }
