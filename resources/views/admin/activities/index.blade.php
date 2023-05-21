@@ -25,7 +25,6 @@
                                     <th scope="col">Image</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Prix Séance</th>
-                                    <th scope="col">Category</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -36,7 +35,6 @@
                                         <td><img src="{{ asset('storage/'.$activity->image) }}" width="160" height="160" style="border-radius: 50%; object-fit: cover;"></td>
                                         <td>{{ $activity->label }}</td>
                                         <td>{{ $activity->prixSeance }}</td>
-                                        <td>{{ $activity->category->label }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
                                                 <button type="submit" class="btn-delete delete-confirm" data-model="activitz" title="Supprimer un activitie" data-url="{{ route('admin.activities.destroy', ['activity' => $activity]) }}" >
