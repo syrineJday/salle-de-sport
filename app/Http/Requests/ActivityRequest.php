@@ -26,9 +26,7 @@ class ActivityRequest extends FormRequest
         return [
             "label" => ["required", "regex:/^[a-zA-Z ]+$/"],
             "description" => ["required"],
-            "prix" => ["required"],
             "image" => ["required"],
-            "category_id" => ["required"],
         ];
     }
 }

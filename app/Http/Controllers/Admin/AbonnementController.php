@@ -123,8 +123,10 @@ class AbonnementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+     public function destroy(Abonnement $abonnement)
     {
-        //
+        $abonnement->delete();
+
+        return response()->json(['deleted' => "Abonnement a été supprimé avec succée"], 200);
     }
 }
