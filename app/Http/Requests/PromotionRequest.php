@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityUpdateRequest extends FormRequest
+class PromotionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class ActivityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "label" => ["required", "regex:/^[a-zA-Z ]+$/"],
-            "description" => ["required"],
+            "dateFin",
+            "prix",
+            "abonnement_id"
         ];
     }
 }

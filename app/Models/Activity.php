@@ -24,4 +24,8 @@ class Activity extends Model
     public function seances(){
         return $this->hasMany(Seance::class);
     }
+
+    public function avis(){
+        return $this->hasMany(Avi::class);
+    }
 }

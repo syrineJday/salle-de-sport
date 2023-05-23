@@ -2,9 +2,11 @@
 
 namespace App\Console;
 
+use DB;
+use App\Models\Promotion;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use DB;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -26,8 +28,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function(){
-            DB::table('seances')->update(['canceled' => null]);
-        })->daily();
+            // DB::table('seances')->update(['canceled' => null]);
+            Promotion::where('dateFin' , '<', date('Y-m-d'))->delete();
+        })->everyMinute();
     }
 
     /**

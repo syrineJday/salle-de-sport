@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Avi;
 use App\Models\User;
 use App\Models\Seance;
 use App\Models\Contact;
 use App\Models\Activity;
+use App\Models\Promotion;
 use App\Models\Abonnement;
 use App\Models\UserSeance;
 use Illuminate\Http\Request;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\SeanceController;
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\AbonnementController;
 use App\Http\Controllers\ActivityController as ActivityClientController; 
 use App\Http\Controllers\AbonnementController as AbonnementClientController;
@@ -42,8 +45,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         "salles" => SalleController::class,
         "activities" => ActivityController::class,
         "seances" => SeanceController::class,
-        "abonnements" => AbonnementController::class
+        "abonnements" => AbonnementController::class,
+        "promotions" => PromotionController::class
     ]);
+    Route::delete('promotion/{id}', function($id){
+        $promotion = Promotion::withTrashed()->find($id);
+        if($promotion){
+
+            $promotion->forceDelete();
+        }
+        
+        return response()->json(['deleted' => "Promotion a été supprimé avec succée"], 200);
+        
+    })->name('promotions.forceDelete');
     Route::get('seances/{seance}/reservations', [SeanceController::class, "reservations"])->name('seances.reservations');
     Route::get('abonnements/{abonnement}/abonnees', [AbonnementController::class, "abonnees"])->name('abonnements.abonnees');
 });
@@ -169,3 +183,8 @@ Route::get('abonnement/{abonnement}/}paiement', function(Abonnement $abonnement)
 // {{ route('abonnement.participer', ['abonnement' => $abonnement]) }}
 
 Route::post('paiement', [PaymentController::class, 'store'])->name('paiement.store');
+Route::post('avis', function(Request $request){
+    $avis = Avi::create($request->all());
+
+    return redirect()->route('activities.show', ['activity' => $avis->activity]);
+})->name('avis.store')->middleware('auth');

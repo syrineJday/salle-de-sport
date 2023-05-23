@@ -87,5 +87,9 @@ class User extends Authenticatable
         return $this->hasMany(Seance::class, 'id', 'entraineur_id');
     }
 
+    public function avis(){
+        return $this->hasMany(Avi::class);
+    }
+
     
 }

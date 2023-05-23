@@ -42,4 +42,10 @@
         <span>Abonnements</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="nav-link @if(Request::is('admin/promotions*')) @else collapsed @endif" href="{{ url('admin/promotions') }}">
+        <i class="bi bi-grid"></i>
+        <span>Promotions</span>
+    </a>
+</li>
 

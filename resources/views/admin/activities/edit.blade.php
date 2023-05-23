@@ -17,23 +17,7 @@
                         <form action="{{ route('admin.activities.update', ['activity' => $activity]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Catégories </label>
-                                
-                                <div class="col-md-6 position-relative">
-                                    <select class="form-select" name="category_id" aria-label="Default select example">
-                                        <option selected="" disabled>Sélectionner un catégorie</option>
-                                        @foreach(App\Models\Category::all() as $category)
-                                            <option value="{{ $category->id }}" @if($category->id == $activity->category->id) selected @endif>{{ $category->label }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category_id')
-                                        <div class="invalid-tooltip  d-block ">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
+                           
                             <div class="row mt-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Nom d'activité </label>
                                 

@@ -18,4 +18,8 @@ class Abonnement extends Model
     public function activities(){
         return $this->belongsToMany(Activity::class, 'abonnement_activities', 'abonnement_id', 'activity_id');
     }
+
+    public function promotions(){
+        return $this->hasMany(Promotion::class);
+    }
 }

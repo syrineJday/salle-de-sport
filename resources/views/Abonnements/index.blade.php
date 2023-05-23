@@ -56,9 +56,20 @@
                                 @endforeach
                             </ul>
                         </p>
-                        <span class="price">
-                            {{ $abonnement->prix }}DT/{{ $abonnement->type }}
-                        </span>
+                        @if($abonnement->promotions()->where('dateFin', '>', date('Y-m-d'))->count())
+
+                            <span class="price" style="text-decoration: line-through; font-size: 30px">
+                                {{ $abonnement->prix }}DT/{{ $abonnement->type }}
+                            </span>
+                            <span class="price" >
+                                {{ $abonnement->promotions()->where('dateFin', '>', date('Y-m-d'))->first()->prix }}DT/{{ $abonnement->type }}
+                            </span>
+                        @else 
+                            <span class="price">
+                                {{ $abonnement->prix }}DT/{{ $abonnement->type }}
+                            </span>
+
+                        @endif
                         <div class="d-flex flex-column" style="gap: 0px">
                             <a href="{{ route('abonnements.show', ['abonnement' => $abonnement]) }}" class="order-btn">
                                 Voir détail <i class="fas fa-angle-double-right"></i>
