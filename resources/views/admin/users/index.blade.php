@@ -57,7 +57,7 @@
                                             <td>{{ $user->specialite }}</td>
                                         @endif
 
-                                        <td>{{ $user->date_naissance }}</td>
+                                        <td>{{ date('Y-m-d', strtotime($user->date_naissance)) }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
                                                 <button type="submit" class="btn-delete delete-confirm" data-model="entraineur" title="Supprimer un entraineur" data-url="{{ route('admin.users.destroy', ['user' => $user]) }}" >

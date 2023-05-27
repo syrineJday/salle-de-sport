@@ -48,12 +48,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         "abonnements" => AbonnementController::class,
         "promotions" => PromotionController::class
     ]);
-    Route::delete('promotion/{id}', function($id){
-        $promotion = Promotion::withTrashed()->find($id);
-        if($promotion){
+    Route::delete('promotion/{promotion}', function(Promotion $promotion){
+        
 
             $promotion->forceDelete();
-        }
         
         return response()->json(['deleted' => "Promotion a été supprimé avec succée"], 200);
         
@@ -149,7 +147,6 @@ Route::get('abonnement/{abonnement}/schedule',
 )->name('abonnements.schedule')->middleware('auth');
 // PAYMENT PART 
 Route::get('activities/{seance}/reservation', function(Seance $seance) {
-    // dd($seance);
     // return view('paiement.index', compact('seance'));
     return view('activities.seanceReserver', compact('seance'));
 })->name('activities.seanceReserver')->middleware('auth');

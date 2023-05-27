@@ -20,22 +20,21 @@
                             {{ $seance->activity->description }}
                         </p>
                       
-                        <h3>Nos entraineurs</h3>
+                        <h3>L'entraineur de séance</h3>
                         <div class="row">
-                        @foreach(App\Models\User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->get() as $trainer)
 
                             <div class="col-xl-4 col-md-4">
                                 <div class="team-wrap-4 mb-30">
                                     <div class="team-img">
-                                        <img src="{{ asset('storage/'.$trainer->photo) }}" alt="img">
+                                        <img src="{{ asset('storage/'.$seance->user->photo) }}" alt="img">
                                     </div>
                                     <div class="team-content">
                                         <h3><a href="javascript:void(0)">
-                                            {{ $trainer->nom }}    
-                                            {{ $trainer->prenom }} 
+                                            {{ $seance->user->nom }}    
+                                            {{ $seance->user->prenom }} 
                                         </a></h3>   
                                         <span>
-                                            {{ $trainer->specialite }}
+                                            {{ $seance->user->specialite }}
 
                                         </span>
                                         <div class="team-social-link">
@@ -54,7 +53,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -72,7 +71,7 @@
                                     Heure Début: <span style="font-weight: 300">{{ $seance->startTime }}</span>
                                 </h4>
                                 <h4>
-                                    Heure Fin: <span style="font-weight: 300">{{ $seance->startTime }}</span>
+                                    Heure Fin: <span style="font-weight: 300">{{ $seance->endTime }}</span>
                                 </h4>
                                 <h4>
                                     Salle: <span style="font-weight: 300">

@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="ps-3">
                                         <h6>
-                                            {{ App\Models\User::whereJsonContains('role->ROLE_ABONNE', true)->count() }}
+                                            {{ App\Models\User::whereJsonContains('role->ROLE_CLIENT', true)->count() }}
                                         </h6>
                                     </div>
                                 </div>

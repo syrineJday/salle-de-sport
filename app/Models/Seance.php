@@ -23,9 +23,7 @@ class Seance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function entraineur(){
-        return $this->belongsTo(User::class);
-    }
+    
 
     public function salle(){
         return $this->belongsTo(Salle::class);

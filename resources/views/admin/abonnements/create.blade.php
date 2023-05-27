@@ -68,7 +68,7 @@
                                 <label for="prix" class="col-sm-2 col-form-label">Tarif </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="number" class="form-control @error('prix') input-invalid @enderror" value="{{ old('prix') }}" name="prix" placeholder="Saisir tarif d'un abonnement" id="validationTooltip03">
+                                    <input type="text" class="form-control @error('prix') input-invalid @enderror" value="{{ old('prix') }}" name="prix" placeholder="Saisir tarif d'un abonnement" id="validationTooltip03">
                                     @error('prix')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}

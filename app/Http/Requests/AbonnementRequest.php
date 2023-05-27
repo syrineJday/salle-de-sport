@@ -25,7 +25,7 @@ class AbonnementRequest extends FormRequest
     {
         return [
             "label" => ["required"],
-            "prix" => ["required"],
+            "prix" => ["required", "numeric"],
             "activity_id" => ["required"]
         ];
     }

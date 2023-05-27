@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('specialite')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->datetime('date_naissance');
+            $table->datetime('date_naissance')->nullable();
             $table->text('description')->nullable();
             $table->rememberToken();
             $table->timestamps();
