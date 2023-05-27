@@ -123,6 +123,6 @@ class SeanceController extends Controller
 
         $seance->save();
 
-        return response()->json(['canceled' => "La séance de ".$seance->day." à ".$seance->startTime." est annulé"], 200);
+        return response()->json(['canceled' => "La séance de ".$seance->day." à ".$seance->startTime." est annulé pour le ".$seance->day." prochain"], 200);
     }
 }

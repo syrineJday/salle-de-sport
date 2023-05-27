@@ -82,18 +82,12 @@
 												<img src="{{ asset('storage/'.$avi->user->photo) }}" alt="author-thumb">
 											</div>
 											<div class="comments-text">
-												<div class="comments-author-name d-flex justify-content-between">
+												<div class="comments-author-name">
 													<h5>
                                                         {{ $avi->user->nom }}
                                                         {{ $avi->user->prenom }}
                                                     </h5>
-                                                    <form action="{{ route('avis.destroy', ['avi' => $avi]) }}" method="post">
-                                                        @csrf 
-                                                        @method('delete')
-                                                        <button type="submit">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
+													
 												</div>
 												<p>
 													{{ $avi->content }}
@@ -271,7 +265,6 @@
             </section>
         @endif
     @endif --}}
-    @include('includes.schedule')
 
 </main>
 @endsection

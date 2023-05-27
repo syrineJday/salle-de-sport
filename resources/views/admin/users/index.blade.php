@@ -43,11 +43,9 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
-                                        @if(request()->role == "entraineur")
                                         <td>
                                             <img src="{{ asset('storage/'.$user->photo) }}" width="80" height="80" style="border-radius: 50%" alt="">
                                         </td>
-                                        @endif
                                         <td>{{ $user->nom }}</td>
                                         <td>{{ $user->prenom }}</td>
                                         <td>{{ $user->numTel }}</td>

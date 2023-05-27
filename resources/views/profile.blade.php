@@ -138,6 +138,13 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                <div class="input-wrap input-icon icon-email">
+                                                    <label for="">Photo de profile</label>
+                                                    <input type="file"  name="photo">
+                                                    @error('photo')
+                                                        <p>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
                                                 <div class="col">
 
                                                     <button type="submit" class="btn btn-gra">Modifier<i class="fas fa-angle-double-right"></i>

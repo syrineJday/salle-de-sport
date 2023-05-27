@@ -38,6 +38,21 @@ use App\Http\Controllers\AbonnementController as AbonnementClientController;
 Route::prefix('entraineur')->name('entraineur.')->group(function () {
     Route::get('seances', [SeanceController::class, "index"])->name('seances.index');
     Route::put('seances/{seance}/annuler', [SeanceController::class, "annuler"])->name('seances.annuler');
+    Route::get('profile', function(){
+        return view('admin.profile');
+    })->name('profile')->middleware('auth');
+    
+    Route::put('profile', function(Request $request){
+        Auth::user()->update($request->except('photo'));
+        if($request->hasFile('photo')){
+            $user = User::find(Auth::user()->id);
+            $user->photo = $request->photo->store('images');
+            $user->save();
+        }
+
+        return view('admin.profile');
+    })->name('profile')->middleware('auth');
+    
 });
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resources([
@@ -104,7 +119,17 @@ Route::put('seances/{seance}/reserver', function(Seance $seance){
 })->name('seances.reserver')->middleware('auth');
 
 Route::resource('activities', ActivityClientController::class);
+Route::get('activityDetails/{activity}', function(Activity $activity){
+    $trainersIds = [];
+    foreach($activity->seances()->get() as $seance){
+        $trainersIds[] = $seance->user->id;
+    }
 
+    $trainers =  User::whereIn('id', $trainersIds)->get();
+    
+
+    return view('activities.showAbonnement', compact('activity', 'trainers'));
+})->name('activity.show.abonnement');
 Route::get('activity/{activity}', function(Activity $activity){
     $jours = ['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche'];
         $seanceIds = [];
@@ -185,3 +210,10 @@ Route::post('avis', function(Request $request){
 
     return redirect()->route('activities.show', ['activity' => $avis->activity]);
 })->name('avis.store')->middleware('auth');
+Route::delete('avis/{avi}', function(Avi $avi){
+
+    $activity = Activity::find($avi->activity->id);
+    $avi->delete();
+
+    return redirect()->route('activities.show', ['activity' => $activity]);
+})->name('avis.destroy')->middleware('auth');

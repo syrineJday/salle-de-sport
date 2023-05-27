@@ -47,12 +47,12 @@
 						</li>
                         @if(Auth::check())
 						<li class="has-dropdown">
-							<img src="{{ asset('frontOffice/assets/img/author/author-1.jpg') }}" alt="">
+							<img src="{{ asset('storage/'.Auth::user()->photo) }}" style="width: 60px; height: 60px; border-radius: 50%" alt="">
                             {{ Auth::user()->nom }}
                             {{ Auth::user()->prenom }}
                             <ul class="sub-menu">
 								<li><a href="{{ route('profile') }}">Mon profile</a></li>
-								<li><a href="{{ route('schedule.index') }}">Mon emploi</a></li>
+								{{-- <li><a href="{{ route('schedule.index') }}">Mon emploi</a></li> --}}
 								<li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

@@ -47,7 +47,7 @@
                                         <p>
                                             {{ substr($activity->description, 0, 30) }}
                                         </p>
-                                        <a href="{{ route('activities.show',['activity' => $activity]) }}" class="read-more">
+                                        <a href="{{ route('activity.show.abonnement',['activity' => $activity]) }}" class="read-more">
                                             <i class="fas fa-angle-double-right"></i>
                                         </a>
                                     </div>

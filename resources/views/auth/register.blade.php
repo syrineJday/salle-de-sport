@@ -35,7 +35,7 @@
 				</div>
 				<div class="col-md-6 col-lg-6">
 					<div class="contact-form">
-						<form action="{{ route('register') }}" method="post">
+						<form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                             @csrf 
                           
 							<div class="input-wrap input-icon icon-name">
@@ -80,12 +80,20 @@
                                     <p>{{ $message }}</p>
                                 @enderror
 							</div>
+                            <div class="input-wrap input-icon icon-email">
+                                <label for="">Photo de profile</label>
+								<input type="file"  name="photo">
+                                @error('photo')
+                                    <p>{{ $message }}</p>
+                                @enderror
+							</div>
 							<div class="input-wrap input-icon icon-email">
 								<input type="password" placeholder="Mot de passe" name="password">
                                 @error('password')
                                     <p>{{ $message }}</p>
                                 @enderror
 							</div>
+							
 							<div class="input-wrap input-icon icon-email">
 								<input type="password" placeholder="Confirmer mot de passe" name="password_confirmation">
 							</div>
