@@ -28,6 +28,7 @@ class SeanceRequest extends FormRequest
             "startTime" => ['required'],
             "endTime" => ['required'],
             "user_id" => ['required'],
+            "entraineur_id" => ['required'],
             "salle_id" => ['required'],
             "activity_id" => ['required'],
         ];

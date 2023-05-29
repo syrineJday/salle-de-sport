@@ -68,7 +68,7 @@
                                     <div class="row">
 
                                         <div class="contact-form col-12">
-                                            <form action="{{ route('profile.update') }}" method="post" class="row">
+                                            <form action="{{ route('profile.update') }}" method="post" class="row" enctype="multipart/form-data">
                                                 @csrf   
                                                 @method('put')
                                                 <div class="col-6">
@@ -96,14 +96,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="input-wrap input-icon icon-name">
-                                                        <input type="number" placeholder="Numéro mobile" value="{{ Auth::user()->numMobile }}" name="numMobile">
-                                                        @error('numMobile')
-                                                            <p>{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                               
                                                 <div class="col-6">
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="number" placeholder="Carte d'identité national" value="{{ Auth::user()->cin }}" name="cin">
@@ -114,7 +107,7 @@
                                                 </div>
                                                 <div class="col-6">
 
-                                                    <div class="input-wrap input-icon icon-name">
+                                                    <div class="input-wrap  ">
                                                         <input type="text" placeholder="Adresse" value="{{ Auth::user()->adresse }}" name="adresse">
                                                         @error('adresse')
                                                             <p>{{ $message }}</p>
@@ -138,12 +131,15 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="input-wrap input-icon icon-email">
-                                                    <label for="">Photo de profile</label>
-                                                    <input type="file"  name="photo">
-                                                    @error('photo')
-                                                        <p>{{ $message }}</p>
-                                                    @enderror
+                                                <div class="col-6">
+
+                                                    <div class="input-wrap ">
+                                                        <label for="">Photo de profile</label>
+                                                        <input type="file"  name="photo">
+                                                        @error('photo')
+                                                            <p>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 <div class="col">
 

@@ -40,6 +40,12 @@ class ProfileController extends Controller
     {
         Auth::user()->update($request->all());
 
+        if($request->hasFile('photo')){
+            Auth::user()->update([
+                "photo" => $request->photo->store('images')
+            ]);
+        }
+
         return redirect('profile')->with('success', 'Votre profile a été modifié avec succée');
     }
 

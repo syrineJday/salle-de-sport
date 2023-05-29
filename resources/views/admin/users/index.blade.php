@@ -36,7 +36,11 @@
                                         <th scope="col">Specialité</th>
                                     @endif
                                     <th scope="col">Date de naissance</th>
+                                    @if(request()->role == "entraineur")
+
                                     <th scope="col">Action</th>
+                                    @endif
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +61,8 @@
 
                                         <td>{{ date('Y-m-d', strtotime($user->date_naissance)) }}</td>
                                         <td>
+                                            @if(request()->role == "entraineur")
+
                                             <div class="d-flex justify-content-around">
                                                 <button type="submit" class="btn-delete delete-confirm" data-model="entraineur" title="Supprimer un entraineur" data-url="{{ route('admin.users.destroy', ['user' => $user]) }}" >
                                                     <i class="fa fa-trash" ></i>
@@ -65,6 +71,7 @@
                                                     <i class="fa fa-pen"></i>
                                                 </a>
                                             </div>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

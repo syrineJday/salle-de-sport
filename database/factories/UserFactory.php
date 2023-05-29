@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'numMobile' => $this->faker->phoneNumber,
             'specialite' => $this->faker->text(10),
             'photo' => $this->faker->randomElement(['images/kpKXCmRbDQlYUwjUe4Jqtk7V9ZtnQzTwaaGkAbSy.jpg', 'images/6ajVjHCnPaoMsB8LLNKToecC1u5kuEq3bwMqOUGY.jpg', 'images/YwEiXopitNFX92xOaJL7IzWFwkhCCsCCECfmCQit.jpg', 'images/LFFnSvK8kEwTJBuyyTqxz8cjQvkrL3IIHr7v40yV.jpg']),
-            'role' => json_encode(["ROLE_ENTRAINEUR" => true]),
+            'role' => json_encode(["ROLE_CLIENT" => true]),
             'date_naissance' => $this->faker->dateTime(),
             'email' => $this->faker->unique()->safeEmail(),
             'cin' => $this->faker->numerify("########"),

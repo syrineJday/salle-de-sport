@@ -87,6 +87,7 @@
                                                         {{ $avi->user->nom }}
                                                         {{ $avi->user->prenom }}
                                                     </h5>
+                                                    @if($avi->user->id == Auth::user()->id)
                                                     <form action="{{ route('avis.destroy', ['avi' => $avi]) }}" method="post">
                                                         @csrf 
                                                         @method('delete')
@@ -94,6 +95,7 @@
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
+                                                    @endif
 												</div>
 												<p>
 													{{ $avi->content }}
@@ -107,6 +109,7 @@
 							</div>
                             @endforeach
 						</div>
+                        @if( Auth::user()->seancesReserver()->where('activity_id', '=', $activity->id)->count() > 0)
 						<div class="blog-comment-form mt-60 mb-md-60 mb-xs-60">
 							<div class="blog-comments-title mb-30">
 								<h4>Taper un avis</h4>
@@ -137,6 +140,11 @@
 								</form>
 							</div>
 						</div>
+                        @else 
+                            <div class="alert alert-warning">
+                                Vous devez tout d'abord réservé une séance ou participé à un abonnement afin d'être capable de taper un avis à propos cette activité
+                            </div>
+                        @endif
 					</div>
 				</div>
             </div>

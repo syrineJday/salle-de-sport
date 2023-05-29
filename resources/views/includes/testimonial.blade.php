@@ -15,7 +15,7 @@
 				<div class="col-xl-6 col-lg-8 col-md-10">
 					<div class="testimonial-slider">
 						<div class="swiper-container">
-							<div class="swiper-wrappclser">
+							<div class="swiper-wrapper">
                                 @foreach(App\Models\Avi::take(5)->orderBy('created_at', 'desc')->get() as $avis)
 								<div class="swiper-slide single-slide">
 									<div class="testimonial-wrap">

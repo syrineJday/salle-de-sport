@@ -20,7 +20,8 @@ class SeanceFactory extends Factory
             "day" => $this->faker->randomElement(['lundi', 'mardi','mercredi', 'jeudi','vendredi','samedi','dimanche']),
             "startTime" =>$this->faker->time(),
             "endTime" =>$this->faker->time(),
-            "user_id" => User::all()->random()->id,
+            "user_id" =>  User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->get()->random()->id,
+            "entraineur_id" => User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->get()->random()->id,
             "salle_id" => Salle::all()->random()->id,
             "activity_id" => Activity::all()->random()->id
         ];

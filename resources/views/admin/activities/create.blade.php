@@ -32,7 +32,7 @@
                                 <label for="prixSeance" class="col-sm-2 col-form-label">Prix de séance </label>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <input type="number" class="form-control @error('prixSeance') input-invalid @enderror" value="{{ old('prixSeance') }}" name="prixSeance" placeholder="Saisir prix de séance d'activité" id="prixSeance">
+                                    <input type="text" class="form-control @error('prixSeance') input-invalid @enderror" value="{{ old('prixSeance') }}" name="prixSeance" placeholder="Saisir prix de séance d'activité" id="prixSeance">
                                     @error('prixSeance')
                                         <div class="invalid-tooltip  d-block ">
                                             {{ $message }}
