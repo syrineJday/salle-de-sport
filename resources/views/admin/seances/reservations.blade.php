@@ -8,7 +8,14 @@
         <h1>Liste des réservations de la séance de {{ $seance->day }} à {{ $seance->startTime }}</h1>
     </div><!-- End Page Title -->
     <section class="section dashboard">
+
         <div class="row">
+            @if(Session::has('deleted'))
+                <div class="alert alert-success">
+
+                    {{ Session::get('deleted') }}
+                </div>
+            @endif
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -24,6 +31,7 @@
                                     <th scope="col">CIN</th>
                                     <th scope="col">Adresse</th>
                                     <th scope="col">Date de réservation</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +44,14 @@
                                         <td>{{ $user->cin }}</td>
                                         <td>{{ $user->adresse }}</td>
                                         <td>{{ $user->pivot->date }}</td>
-                                      
+                                        <td>
+                                            @php 
+                                                $userSeance = App\Models\UserSeance::where('seance_id', '=', $user->pivot->seance_id)->where('user_id', '=', $user->pivot->user_id)->first();
+                                            @endphp
+                                            <a href="{{ route('admin.reservationSeance.destroy', ['userSeance' => $userSeance]) }}" class="btn-delete " title="Annuler un réservation" >
+                                                Annuler
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

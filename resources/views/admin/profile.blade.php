@@ -63,18 +63,21 @@
                                     @csrf
                                     @method('put')
                                     <div class="row mb-3">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
-                                            Image</label>
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Image de profile</label>
                                         <div class="col-md-8 col-lg-9">
                                             <img src="{{ asset('storage/'.Auth::user()->photo) }}" alt="Profile">
-                                            <div class="pt-2">
-                                                <label for="photo">
+                                                {{-- <label for="photo">
                                                     <label for="photo" class="btn btn-primary btn-sm"
                                                         title="Upload new profile image"><i class="bi bi-upload"></i></label>
-                                                </label>
-                                                <input type="file" hidden id="photo" name="photo">
+                                                </label> --}}
                                                 
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-2 col-form-label">Photo </label>
+                                        <div class="col-sm-8">
+                                            <input type="file" id="photo" name="photo" class="form-control">
+
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -156,6 +159,8 @@
 
 
 
+
+
                                     <div class="row mb-3">
                                         <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
                                             Profile</label>
@@ -171,6 +176,18 @@
                                         <div class="col-md-8 col-lg-9">
                                             <input name="instagram" type="text" class="form-control" id="Instagram"
                                                 value="https://instagram.com/#">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-2 col-form-label">Mot de passe
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="password" class="form-control"
+                                                name="password" placeholder="Modifier mot de passe">
+                                            @error('password')
+                                            <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
 

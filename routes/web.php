@@ -9,6 +9,7 @@ use App\Models\Promotion;
 use App\Models\Abonnement;
 use App\Models\UserSeance;
 use Illuminate\Http\Request;
+use App\Models\UsersAbonnement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -49,6 +50,11 @@ Route::prefix('entraineur')->name('entraineur.')->group(function () {
             $user->photo = $request->photo->store('images');
             $user->save();
         }
+        if($request->has('password')){
+            $user = User::find(Auth::user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
 
         return view('admin.profile');
     })->name('profile')->middleware('auth');
@@ -73,6 +79,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('promotions.forceDelete');
     Route::get('seances/{seance}/reservations', [SeanceController::class, "reservations"])->name('seances.reservations');
     Route::get('abonnements/{abonnement}/abonnees', [AbonnementController::class, "abonnees"])->name('abonnements.abonnees');
+
+    Route::get('reservation/{userSeance}/annuler', function(UserSeance $userSeance){
+
+        $userSeance->delete();
+
+        return redirect()->back()->with('deleted', 'Réservation de séance est annulé avec succés');
+    })->name('reservationSeance.destroy');
+
+    Route::get('reservationAbonnement/{userAbonnement}/annuler', function(UsersAbonnement $userAbonnement){
+        $userAbonnement->delete();
+
+        return redirect()->back()->with('deleted', 'Réservation d\'abonnement est annulé avec succés');
+    })->name('reservationAbonnement.destroy');
 });
 
 

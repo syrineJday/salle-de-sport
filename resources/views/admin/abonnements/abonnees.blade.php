@@ -9,6 +9,12 @@
     </div><!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
+            @if(Session::has('deleted'))
+                <div class="alert alert-success">
+
+                    {{ Session::get('deleted') }}
+                </div>
+            @endif
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -25,6 +31,7 @@
                                     <th scope="col">Adresse</th>
                                    
                                     <th scope="col">Date de naissance</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,8 +44,15 @@
                                         <td>{{ $user->cin }}</td>
                                         <td>{{ $user->adresse }}</td>
                                         <td>{{ $user->date_naissance }}</td>
-                                      
-                                    </tr>
+                                        <td>
+                                            @php 
+                                                $userAbonnement = App\Models\UsersAbonnement::where('abonnement_id', '=', $user->pivot->abonnement_id)->where('user_id', '=', $user->pivot->user_id)->first();
+                                            @endphp
+                                            <a href="{{ route('admin.reservationAbonnement.destroy', ['userAbonnement' => $userAbonnement]) }}" class="btn-delete " title="Annuler un réservation" >
+                                                Annuler
+                                            </a>
+                                        </td>
+                                    </tr>   
                                 @endforeach
                             </tbody>
                         </table>

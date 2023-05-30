@@ -87,6 +87,11 @@
                                                         {{ $avi->user->nom }}
                                                         {{ $avi->user->prenom }}
                                                     </h5>
+                                                    @guest 
+
+                                                    @else 
+
+
                                                     @if($avi->user->id == Auth::user()->id)
                                                     <form action="{{ route('avis.destroy', ['avi' => $avi]) }}" method="post">
                                                         @csrf 
@@ -95,6 +100,7 @@
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
+                                                    @endif
                                                     @endif
 												</div>
 												<p>
@@ -109,41 +115,75 @@
 							</div>
                             @endforeach
 						</div>
-                        @if( Auth::user()->seancesReserver()->where('activity_id', '=', $activity->id)->count() > 0)
-						<div class="blog-comment-form mt-60 mb-md-60 mb-xs-60">
-							<div class="blog-comments-title mb-30">
-								<h4>Taper un avis</h4>
-							</div>
-							<div class="comment-form">
-								<form action="{{ route('avis.store') }}" method="post">
-                                    @csrf
-                                    @guest 
+                        @guest 
+                             <div class="blog-comment-form mt-60 mb-md-60 mb-xs-60">
+                                <div class="blog-comments-title mb-30">
+                                    <h4>Taper un avis</h4>
+                                </div>
+                                <div class="comment-form">
+                                    <form action="{{ route('avis.store') }}" method="post">
+                                        @csrf
+                                        @guest 
 
-                                    @else 
+                                        @else 
 
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                    @endif
-                                    <input type="hidden" name="activity_id" value="{{ $activity->id }}">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="input-wrap input-icon icon-msg">
-												<textarea name="content" placeholder="Ecrivez un avis..." spellcheck="false"></textarea>
-                                                @error('content')
-                                                    <p>{{ $message }}</p>
-                                                @enderror
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<button class="btn btn-gra" type="submit">Envoyer</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-                        @else 
-                            <div class="alert alert-warning">
-                                Vous devez tout d'abord réservé une séance ou participé à un abonnement afin d'être capable de taper un avis à propos cette activité
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        @endif
+                                        <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="input-wrap input-icon icon-msg">
+                                                    <textarea name="content" placeholder="Ecrivez un avis..." spellcheck="false"></textarea>
+                                                    @error('content')
+                                                        <p>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button class="btn btn-gra" type="submit">Envoyer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
+                        @else 
+
+                            @if( Auth::user()->seancesReserver()->where('activity_id', '=', $activity->id)->count() > 0)
+                            <div class="blog-comment-form mt-60 mb-md-60 mb-xs-60">
+                                <div class="blog-comments-title mb-30">
+                                    <h4>Taper un avis</h4>
+                                </div>
+                                <div class="comment-form">
+                                    <form action="{{ route('avis.store') }}" method="post">
+                                        @csrf
+                                        @guest 
+
+                                        @else 
+
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        @endif
+                                        <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="input-wrap input-icon icon-msg">
+                                                    <textarea name="content" placeholder="Ecrivez un avis..." spellcheck="false"></textarea>
+                                                    @error('content')
+                                                        <p>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button class="btn btn-gra" type="submit">Envoyer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @else 
+                                <div class="alert alert-warning">
+                                    Vous devez tout d'abord réservé une séance ou participé à un abonnement afin d'être capable de taper un avis à propos cette activité
+                                </div>
+                            @endif
                         @endif
 					</div>
 				</div>

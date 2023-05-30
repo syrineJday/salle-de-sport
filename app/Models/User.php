@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
 
     public function seancesReserver(){
-        return $this->belongsToMany(Seance::class, 'user_seances', 'user_id', 'seance_id');
+        return $this->belongsToMany(Seance::class, 'user_seances', 'user_id', 'seance_id')->withPivot('date');
     }
 
     public function isAdmin(){

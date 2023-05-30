@@ -56,7 +56,7 @@
                                         <td>{{ $seance->startTime }}</td>
                                         <td>{{ $seance->endTime }}</td>
                                         <td>{{ $seance->user->nom }} {{ $seance->user->prenom }}</td>
-                                        <td>{{ $seance->salle->label }}</td>
+                                        <td>{{ $seance->salle->num }}</td>
                                         <td>{{ $seance->activity->label }}</td>
                                         <td>
                                             @php 

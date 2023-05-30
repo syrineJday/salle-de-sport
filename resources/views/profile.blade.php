@@ -72,6 +72,9 @@
                                                 @csrf   
                                                 @method('put')
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Nom
+                                                    </label>
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="text" placeholder="Nom" value="{{ Auth::user()->nom }}" name="nom">
                                                         @error('nom')
@@ -80,6 +83,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Prenom
+                                                    </label>
 
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="text" placeholder="Prénom" value="{{ Auth::user()->prenom }}" name="prenom">
@@ -89,6 +95,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Numéro de téléphone
+                                                    </label>
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="number" placeholder="Numéro de téléphone" value="{{ Auth::user()->numTel }}" name="numTel">
                                                         @error('numTel')
@@ -98,6 +107,9 @@
                                                 </div>
                                                
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Carte d'identité national
+                                                    </label>
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="number" placeholder="Carte d'identité national" value="{{ Auth::user()->cin }}" name="cin">
                                                         @error('cin')
@@ -106,6 +118,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Adresse
+                                                    </label>
 
                                                     <div class="input-wrap  ">
                                                         <input type="text" placeholder="Adresse" value="{{ Auth::user()->adresse }}" name="adresse">
@@ -115,6 +130,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Date de naissance
+                                                    </label>
                                                     <div class="input-wrap input-icon icon-name">
                                                     
                                                         <input type="date" placeholder="Date de naissance" value={{ Auth::user()->date_naissance }} name="date_naissance">
@@ -124,6 +142,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <label for="">
+                                                        Email
+                                                    </label>
                                                     <div class="input-wrap input-icon icon-name">
                                                         <input type="text" placeholder="E-mail adresse" value="{{ Auth::user()->email }}" name="email">
                                                         @error('email')
@@ -132,9 +153,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                              
 
+                                                    <label for="">Photo de profile</label>
                                                     <div class="input-wrap ">
-                                                        <label for="">Photo de profile</label>
                                                         <input type="file"  name="photo">
                                                         @error('photo')
                                                             <p>{{ $message }}</p>
@@ -222,7 +244,7 @@
                                                             @php 
                                                                 $currentDay = date('D');
                                                             @endphp 
-                                                            @if($days[$seance->day] == $currentDay)
+                                                            @if($days[$seance->day] == $currentDay && $seance->pivot->date == date('Y-m-d'))
                                                                 Ce jour
                                                             @else 
                                                                 ---------
