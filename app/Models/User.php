@@ -86,10 +86,13 @@ class User extends Authenticatable
     public function seancesRemplacent(){
         return $this->hasMany(Seance::class, 'id', 'entraineur_id');
     }
-
+    
     public function avis(){
         return $this->hasMany(Avi::class);
     }
-
+    
+    public function notifications(){
+        return $this->hasMany(Notification::class);
+    }
     
 }

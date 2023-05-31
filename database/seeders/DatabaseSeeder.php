@@ -64,5 +64,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\UsersAbonnement::factory(3)->create();
         \App\Models\AbonnementActivity::factory(3)->create();
         \App\Models\Horaire::factory(3)->create();
+        // \App\Models\Notification::factory(3)->create();
     }
 }

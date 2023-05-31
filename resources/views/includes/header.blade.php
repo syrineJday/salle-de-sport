@@ -46,6 +46,17 @@
 						<li>
 						</li>
                         @if(Auth::check())
+                        <li class="has-dropdown">
+                            <i class="fa fa-bell"></i>
+                            
+                            <ul class="sub-menu">
+                                @foreach(Auth::user()->notifications()->get() as $notif)
+                                <li style="padding: 20px 10px">
+                                    {{ $notif->contenue }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
 						<li class="has-dropdown">
 							<img src="{{ asset('storage/'.Auth::user()->photo) }}" style="width: 60px; height: 60px; border-radius: 50%" alt="">
                             {{ Auth::user()->nom }}

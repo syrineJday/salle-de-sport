@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\Promotion;
 use App\Models\Abonnement;
 use App\Models\UserSeance;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\UsersAbonnement;
 use Illuminate\Support\Facades\Auth;
@@ -82,12 +83,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('reservation/{userSeance}/annuler', function(UserSeance $userSeance){
 
+        $notif = new Notification(); 
+
+        $notif->contenue = "La séance de ".Seance::find($userSeance->seance_id)->day." à ".Seance::find($userSeance->seance_id)->startTime." est annulé ";
+        $notif->user_id = $userSeance->user_id;
+
+        $notif->save();
+
         $userSeance->delete();
 
+        
         return redirect()->back()->with('deleted', 'Réservation de séance est annulé avec succés');
     })->name('reservationSeance.destroy');
 
     Route::get('reservationAbonnement/{userAbonnement}/annuler', function(UsersAbonnement $userAbonnement){
+
+        $notif = new Notification(); 
+
+        $notif->contenue = "Votre abonnement ".Abonnement::find($userAbonnement->abonnement_id)->label." est anuulé ";
+        $notif->user_id = $userAbonnement->user_id;
+
+        $notif->save();
+
+
         $userAbonnement->delete();
 
         return redirect()->back()->with('deleted', 'Réservation d\'abonnement est annulé avec succés');
