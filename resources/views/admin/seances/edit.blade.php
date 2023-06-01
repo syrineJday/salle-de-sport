@@ -34,23 +34,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <label for="prix" class="col-sm-2 col-form-label">Entraineur remplacent </label>
-                                
-                                <div class="col-md-6 position-relative">
-                                    <select class="form-select" name="entraineur_id" aria-label="Default select example">
-                                        <option selected="" disabled>Sélectionner un entraineur</option>
-                                        @foreach(App\Models\User::whereJsonContains('role->ROLE_ENTRAINEUR', true)->get() as $user)
-                                            <option value="{{ $user->id }}"  @if($user->id == $seance->entraineur->id) selected @endif>{{ $user->nom }}{{ $user->prenom }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('entraineur_id')
-                                        <div class="invalid-tooltip  d-block ">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
+                          
                             <div class="row mt-3">
                                 <label for="prix" class="col-sm-2 col-form-label">Salle </label>
                                 
@@ -58,7 +42,7 @@
                                     <select class="form-select" name="salle_id" aria-label="Default select example">
                                         <option selected="" disabled>Sélectionner une salle</option>
                                         @foreach(App\Models\Salle::all() as $salle)
-                                            <option value="{{ $salle->id }}" @if($salle->id == $seance->salle->id) selected @endif>{{ $salle->label }}</option>
+                                            <option value="{{ $salle->id }}" @if($salle->id == $seance->salle->id) selected @endif>{{ $salle->label }} : {{ $salle->num }}</option>
                                         @endforeach
                                     </select>
                                     @error('salle_id')

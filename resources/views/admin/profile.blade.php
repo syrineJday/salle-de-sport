@@ -14,6 +14,15 @@
     </div>
     <section class="section profile">
         <div class="row">
+            <div class="col">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             <div class="col-xl-4">
 
                 <div class="card">
@@ -77,7 +86,6 @@
                                         <label for="inputText" class="col-sm-2 col-form-label">Photo </label>
                                         <div class="col-sm-8">
                                             <input type="file" id="photo" name="photo" class="form-control">
-
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -144,16 +152,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-2 col-form-label">Spécialite </label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" value="{{ Auth::user()->specialite }}"
-                                                name="specialite" placeholder="Saisir specialite d'un entraineur">
-                                            @error('specialite')
-                                            <p class="mt-2" style="color: #7f2121">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                 
 
 
 
@@ -161,23 +160,6 @@
 
 
 
-                                    <div class="row mb-3">
-                                        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
-                                            Profile</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="facebook" type="text" class="form-control" id="Facebook"
-                                                value="https://facebook.com/#">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram
-                                            Profile</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="instagram" type="text" class="form-control" id="Instagram"
-                                                value="https://instagram.com/#">
-                                        </div>
-                                    </div>
 
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Mot de passe

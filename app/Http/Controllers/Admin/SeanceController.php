@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Auth;
 use App\Models\User;
 use App\Models\Seance;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SeanceRequest;
@@ -23,11 +24,9 @@ class SeanceController extends Controller
             $seances = Seance::paginate(10);
         } 
         else {
-            $seances = Auth::user()->seances()->paginate(10);
-            $seancesRemplacent = Seance::query()
-                ->where('entraineur_id', '=', Auth::user()->id)
-                ->get();
-                return view('admin.seances.index', compact('seances', 'seancesRemplacent'));
+            $seances = Auth::user()->seances()->whereNull('canceled')->paginate(10);
+        
+            return view('admin.seances.index', compact('seances'));
         }   
 
         return view('admin.seances.index', compact('seances'));
@@ -98,7 +97,22 @@ class SeanceController extends Controller
      */
     public function update(Request $request, Seance $seance)
     {
+        
+    
+        if($seance->canceled && $request->user_id != $seance->user_id){
+            $seance->canceled = null;
+            $seance->save();
+        }
         $seance->update($request->all());
+
+        foreach($seance->users()->get() as $client){
+            $notif = new Notification(); 
+
+            $notif->contenue = "La séance réservé de l'activité ".$seance->activity->label." a été modifié à ".$seance->day." au ".$seance->startTime;
+            $notif->user_id = $client->id;
+
+            $notif->save();
+        }
 
         return redirect()->route('admin.seances.index');
     }
@@ -121,7 +135,15 @@ class SeanceController extends Controller
     public function annuler(Seance $seance){
         $seance->canceled = true;
 
+
         $seance->save();
+
+        $notif = new Notification(); 
+
+        $notif->contenue = "La séance de l'entraineur de ".$seance->day." à ".$seance->startTime." a été anuulé";
+        $notif->user_id = 1;
+
+        $notif->save();
 
         return response()->json(['canceled' => "La séance de ".$seance->day." à ".$seance->startTime." est annulé pour le ".$seance->day." prochain"], 200);
     }

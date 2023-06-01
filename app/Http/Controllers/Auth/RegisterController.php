@@ -78,6 +78,7 @@ class RegisterController extends Controller
             "email" => $data['email'],
             "numTel" => $data['numTel'],
             "cin" => $data['cin'],
+            "adresse" => $data['adresse'],
             "photo" => $photo,
             "role" => json_encode(['ROLE_CLIENT' => true]),
             "date_naissance" => $data['date_naissance'],

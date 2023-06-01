@@ -163,6 +163,17 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                <div class="col-12">
+                                                    <label for="">
+                                                        Nom
+                                                    </label>
+                                                    <div class="input-wrap input-icon icon-name">
+                                                        <input type="password" placeholder="Nom"  name="password">
+                                                        @error('nom')
+                                                            <p>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                                 <div class="col">
 
                                                     <button type="submit" class="btn btn-gra">Modifier<i class="fas fa-angle-double-right"></i>
@@ -204,9 +215,18 @@
                                                                         </ul>
                                                                     </td>
                                                                     <td class="pricing-wrap">
-                                                                        <a href="{{ route('abonnements.schedule', ['abonnement' => $abonnement]) }}" class="order-btn">
-                                                                            Voir emploi <i class="fas fa-angle-double-right"></i>
-                                                                        </a>
+                                                                        <div class="d-flex justify-content-between flex-column">
+                                                                            <div>
+
+                                                                                <a href="{{ route('abonnements.schedule', ['abonnement' => $abonnement]) }}" class="order-btn">
+                                                                                    Voir emploi <i class="fas fa-angle-double-right"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div>
+
+                                                                                <a href="{{ route('abonnement.annuler', ['abonnement' => $abonnement]) }}" class="btn btn-success">Annuler</a>
+                                                                            </div>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -229,6 +249,7 @@
                                                     <th>Salle</th>
                                                     <th>Activité</th>
                                                     <th>Aujourd'hui</th>
+                                                    <th>Annulation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -249,6 +270,9 @@
                                                             @else 
                                                                 ---------
                                                             @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('seance.annuler', ['seance' => $seance]) }}" class="btn btn-success">Annuler</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

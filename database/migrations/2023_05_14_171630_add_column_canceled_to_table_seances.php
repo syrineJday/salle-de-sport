@@ -14,7 +14,7 @@ class AddColumnCanceledToTableSeances extends Migration
     public function up()
     {
         Schema::table('seances', function (Blueprint $table) {
-            $table->string('canceled')->nullable();
+            $table->boolean('canceled')->nullable();
         });
     }
 

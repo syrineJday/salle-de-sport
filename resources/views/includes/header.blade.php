@@ -22,10 +22,10 @@
 							<a href="{{ route('entraineurs.index') }}">Entraineurs</a>
 						</li>
 					
-						<li class="has-dropdown">
+						{{-- <li class="has-dropdown">
 							<a href="{{ route('contact.index') }}">Contact</a>
 							
-						</li>
+						</li> --}}
 					
                       
 
@@ -47,7 +47,9 @@
 						</li>
                         @if(Auth::check())
                         <li class="has-dropdown">
-                            <i class="fa fa-bell"></i>
+                            <i class="fa fa-bell">
+                                <span>{{ Auth::user()->notifications()->get()->count() }}</span>
+                            </i>
                             
                             <ul class="sub-menu">
                                 @foreach(Auth::user()->notifications()->get() as $notif)

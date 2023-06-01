@@ -57,7 +57,7 @@ Route::prefix('entraineur')->name('entraineur.')->group(function () {
             $user->save();
         }
 
-        return view('admin.profile');
+        return redirect()->route('entraineur.profile')->with('success', 'Votre profile a été modifié avec succés');
     })->name('profile')->middleware('auth');
     
 });
@@ -176,7 +176,7 @@ Route::get('activity/{activity}', function(Activity $activity){
             $trainersIds[] = $seance->user->id;
         }
 
-        $seances =  Seance::whereIn('id', $seanceIds)->get();
+        $seances =  Seance::whereIn('id', $seanceIds)->whereNull('canceled')->get('id');
         $trainers =  User::whereIn('id', $trainersIds)->get();
 
         return view('activities.show', compact('activity', 'jours', 'seances', 'trainers'));
@@ -254,3 +254,21 @@ Route::delete('avis/{avi}', function(Avi $avi){
 
     return redirect()->route('activities.show', ['activity' => $activity]);
 })->name('avis.destroy')->middleware('auth');
+
+Route::get('seance/{seance}/annuler', function(Seance $seance){
+
+    // $seance->users()->where('user_id', Auth::user()->id)->delete();
+    $userSeance = UserSeance::where('user_id', Auth::user()->id)->where('seance_id', '=', $seance->id)->first();
+    $userSeance->delete();
+
+    return redirect()->back()->with('success', 'La séance de '.$seance->day." à ".$seance->startTime." est supprimée");
+})->name('seance.annuler')->middleware('auth');
+
+Route::get('abonnement/{abonnement}/annuler', function(Abonnement $abonnement){
+
+    // $seance->users()->where('user_id', Auth::user()->id)->delete();
+    $userAbonnement = UsersAbonnement::where('user_id', Auth::user()->id)->where('abonnement_id', '=', $abonnement->id)->first();
+    $userAbonnement->delete();
+
+    return redirect()->back()->with('success', 'La réservation de l\'abonnement '.$abonnement->label." est supprimée");
+})->name('abonnement.annuler')->middleware('auth');

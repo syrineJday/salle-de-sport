@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 class ProfileController extends Controller
 {
     /**
@@ -43,6 +45,11 @@ class ProfileController extends Controller
         if($request->hasFile('photo')){
             Auth::user()->update([
                 "photo" => $request->photo->store('images')
+            ]);
+        }
+        if($request->has('password')){
+            Auth::user()->update([
+                "password" => Hash::make($request->password)
             ]);
         }
 

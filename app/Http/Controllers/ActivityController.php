@@ -39,7 +39,7 @@ class ActivityController extends Controller
             $trainersIds[] = $seance->user->id;
         }
 
-        $seances =  Seance::whereIn('id', $seanceIds)->get();
+        $seances =  Seance::whereIn('id', $seanceIds)->whereNull('canceled')->get();
         $trainers =  User::whereIn('id', $trainersIds)->get();
         
 
